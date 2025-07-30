@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K4iRox - La Inteligencia Artificial que domina el momento oportuno</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #1f164f;
+            --secondary-dark: #16113a;
+            --accent-purple: #b541fa;
+            --accent-cyan: #76f6f5;
+            --accent-pink: #b541fa;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+        }
+
+        body {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--secondary-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 160px);
+            max-width: 1600px;
+            padding: 15px 0;
+            z-index: 1000;
+            background: rgba(213, 134, 255, 0.6);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            border: 1px solid rgba(213, 134, 255, 0.8);
+        }
+
+        nav {
+            width: 100%;
+            padding: 0 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .logo span {
+            background: linear-gradient(90deg, var(--text-primary) 0%, var(--text-primary) 20%, var(--accent-purple) 20%, var(--accent-purple) 40%, var(--text-primary) 40%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            align-items: center;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-cyan);
+        }
+        
+        .nav-links a.active {
+            color: white;
+            text-decoration: underline;
+            text-underline-offset: 8px;
+            text-decoration-thickness: 2px;
+            text-decoration-color: white;
+        }
+        
+        .auth-buttons {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .login-button {
+            padding: 10px 24px;
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .login-button:hover {
+            background: #1f164f;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(31, 22, 79, 0.4);
+        }
+        
+        /* Hamburger Menu */
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 24px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .hamburger-menu span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--text-primary);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger-menu.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+        
+        .hamburger-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger-menu.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 90px;
+            left: 0;
+            right: 0;
+            background: rgba(181, 65, 250, 0.95);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(181, 65, 250, 0.2);
+            padding: 40px 20px;
+            z-index: 999;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.active {
+            transform: translateY(0);
+        }
+        
+        .mobile-menu ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .mobile-menu li {
+            margin-bottom: 20px;
+        }
+        
+        .mobile-menu a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            display: block;
+            padding: 10px 0;
+            transition: color 0.3s ease;
+        }
+        
+        .mobile-menu a:hover {
+            color: var(--accent-purple);
+        }
+        
+        .mobile-menu .login-button {
+            margin-top: 20px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 250px 0 150px;
+            background: radial-gradient(circle at 70% 50%, rgba(181, 65, 250, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 30% 80%, rgba(118, 246, 245, 0.2) 0%, transparent 50%),
+                        var(--secondary-dark);
+            margin-bottom: -50px;
+            z-index: 1;
+        }
+
+        .hero-container {
+            width: calc(100% - 160px);
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            text-align: left;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 500px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+            color: var(--accent-purple);
+            padding: 16px 32px;
+            border: 2px solid var(--accent-purple);
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: linear-gradient(45deg, var(--accent-purple), var(--accent-cyan));
+            background-origin: border-box;
+            color: white;
+            border: 2px solid transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(181, 65, 250, 0.4);
+        }
+
+        .play-icon {
+            width: 20px;
+            height: 20px;
+            background: var(--accent-purple);
+            border-radius: 50%;
+            position: relative;
+            transition: background 0.3s ease;
+        }
+
+        .play-icon::after {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 5px;
+            border-left: 8px solid white;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+        }
+        
+        .cta-button:hover .play-icon {
+            background: white;
+        }
+        
+        .cta-button:hover .play-icon::after {
+            border-left-color: var(--accent-purple);
+        }
+
+        /* 3D Visual Element */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 50px;
+        }
+
+        .fluid-shape {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .fluid-shape::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 320px;
+            height: 320px;
+            background: linear-gradient(135deg, rgba(181, 65, 250, 0.3), rgba(118, 246, 245, 0.3));
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            transform: translate(-50%, -50%);
+            filter: blur(40px);
+            animation: morph 8s ease-in-out infinite;
+        }
+
+        @keyframes morph {
+            0%, 100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+            50% { border-radius: 70% 30% 50% 50% / 30% 70% 40% 60%; }
+        }
+
+        .ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 280px;
+            height: 280px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+        }
+
+        .ring::after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, var(--accent-purple), transparent, var(--accent-cyan));
+            border-radius: 50%;
+            animation: rotate 10s linear infinite reverse;
+        }
+
+        @keyframes rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        /* Floating Orbs */
+        .floating-orb {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+            opacity: 0.6;
+            animation: orbit 20s linear infinite;
+        }
+        
+        .orb-1 {
+            width: 40px;
+            height: 40px;
+            top: 10%;
+            left: 20%;
+            animation-duration: 15s;
+            animation-delay: 0s;
+        }
+        
+        .orb-2 {
+            width: 30px;
+            height: 30px;
+            top: 70%;
+            right: 15%;
+            animation-duration: 18s;
+            animation-delay: 3s;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+        }
+        
+        .orb-3 {
+            width: 50px;
+            height: 50px;
+            bottom: 20%;
+            left: 10%;
+            animation-duration: 22s;
+            animation-delay: 5s;
+        }
+        
+        .orb-4 {
+            width: 25px;
+            height: 25px;
+            top: 30%;
+            right: 25%;
+            animation-duration: 17s;
+            animation-delay: 2s;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+        }
+        
+        .orb-5 {
+            width: 35px;
+            height: 35px;
+            top: 50%;
+            left: 5%;
+            animation-duration: 20s;
+            animation-delay: 7s;
+        }
+        
+        .orb-6 {
+            width: 45px;
+            height: 45px;
+            top: 15%;
+            right: 10%;
+            animation-duration: 19s;
+            animation-delay: 4s;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+        }
+        
+        .orb-7 {
+            width: 20px;
+            height: 20px;
+            bottom: 30%;
+            right: 20%;
+            animation-duration: 16s;
+            animation-delay: 1s;
+        }
+        
+        .orb-8 {
+            width: 55px;
+            height: 55px;
+            top: 60%;
+            left: 25%;
+            animation-duration: 23s;
+            animation-delay: 6s;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+        }
+        
+        .orb-9 {
+            width: 38px;
+            height: 38px;
+            bottom: 10%;
+            right: 30%;
+            animation-duration: 21s;
+            animation-delay: 8s;
+        }
+        
+        @keyframes orbit {
+            0% {
+                transform: translate(0, 0);
+            }
+            25% {
+                transform: translate(30px, -20px);
+            }
+            50% {
+                transform: translate(-20px, -40px);
+            }
+            75% {
+                transform: translate(-40px, 20px);
+            }
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+        
+
+
+        /* Features Section */
+        .features {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 150px 80px 120px;
+            background: var(--secondary-dark);
+            position: relative;
+            z-index: 0;
+        }
+        
+        .features::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(180deg, transparent 0%, var(--secondary-dark) 100%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-label {
+            color: var(--accent-purple);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .section-description {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 80px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+        
+        @media (max-width: 1024px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .feature-card {
+            text-align: center;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-3d {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(181, 65, 250, 0.1), rgba(118, 246, 245, 0.1));
+            border-radius: 50%;
+            position: relative;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-3d::before {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 60%;
+            background: linear-gradient(45deg, var(--accent-purple), var(--accent-cyan));
+            border-radius: 50%;
+            opacity: 0.8;
+        }
+
+        .feature-card:hover .icon-3d {
+            transform: scale(1.1);
+        }
+
+        .icon-3d::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(45deg, var(--accent-purple), var(--accent-cyan));
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover .icon-3d::after {
+            opacity: 0.3;
+        }
+
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* About Us Section */
+        .services {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 0;
+            background: var(--secondary-dark);
+            position: relative;
+        }
+
+        .services-container {
+            width: calc(100% - 160px);
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 60px;
+            text-align: center;
+        }
+
+        .services-timeline {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            margin-top: 80px;
+            position: relative;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 60px;
+        }
+
+        /* Wavy connecting line */
+        .services-timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 5%;
+            right: 5%;
+            height: 180px;
+            background: none;
+            z-index: 0;
+        }
+        
+        /* SVG wavy line */
+        .wave-line {
+            position: absolute;
+            top: 25px;
+            left: 0;
+            right: 0;
+            height: 100px;
+            z-index: 0;
+        }
+        
+        .wave-line svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .wave-line path {
+            fill: none;
+            stroke: url(#gradient-line);
+            stroke-width: 2;
+            opacity: 0.6;
+        }
+        
+        .section-description {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+            margin-top: 20px;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .service-item {
+            position: relative;
+            text-align: center;
+            flex: 1;
+            z-index: 1;
+        }
+        
+        /* Alternate positioning */
+        .service-item:nth-child(1),
+        .service-item:nth-child(3) {
+            margin-top: 100px;
+        }
+        
+        .service-item:nth-child(2),
+        .service-item:nth-child(4) {
+            margin-top: -50px;
+        }
+
+        .service-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--secondary-dark);
+            border: 3px dashed var(--accent-cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(118, 246, 245, 0.3);
+        }
+
+        .service-item:nth-child(2) .service-circle {
+            border-color: #00e5ff;
+            color: #00e5ff;
+            box-shadow: 0 8px 24px rgba(0, 229, 255, 0.3);
+        }
+
+        .service-item:nth-child(3) .service-circle {
+            border-color: #00e5ff;
+            color: #00e5ff;
+            box-shadow: 0 8px 24px rgba(0, 229, 255, 0.3);
+        }
+        
+        .service-item:nth-child(4) .service-circle {
+            border-color: #b541fa;
+            color: #b541fa;
+            box-shadow: 0 8px 24px rgba(181, 65, 250, 0.3);
+        }
+
+        .service-circle:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 15px 40px rgba(118, 246, 245, 0.5);
+        }
+
+        .service-item h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .service-item p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.5;
+            max-width: 200px;
+            margin: 0 auto;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            padding: 250px 0 120px;
+            background: var(--secondary-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(181, 65, 250, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .testimonials-container {
+            width: calc(100% - 160px);
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 60px;
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        
+        .testimonials-header {
+            text-align: left;
+            padding-right: 40px;
+            padding-left: 0;
+        }
+
+        .testimonials .section-title {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            text-align: left;
+        }
+        
+        .testimonials .section-description {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 0;
+            text-align: left;
+        }
+        
+        .testimonials-grid {
+            position: relative;
+            width: 100%;
+            height: 650px;
+            overflow: visible;
+        }
+        
+        @keyframes float-card {
+            0% {
+                transform: translate(var(--x), var(--y));
+            }
+            25% {
+                transform: translate(calc(var(--x) + var(--move-x)), calc(var(--y) - 10px));
+            }
+            50% {
+                transform: translate(calc(var(--x) + var(--move-x) / 2), calc(var(--y) - 20px));
+            }
+            75% {
+                transform: translate(calc(var(--x)), calc(var(--y) + 10px));
+            }
+            100% {
+                transform: translate(var(--x), var(--y));
+            }
+        }
+        
+        .floating-card {
+            position: absolute;
+            background: rgba(31, 22, 79, 0.9);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(181, 65, 250, 0.3);
+            border-radius: 16px;
+            padding: 20px;
+            width: 250px;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            animation: float-card 20s ease-in-out infinite;
+        }
+        
+        .floating-card:nth-child(1) {
+            --x: 0%;
+            --y: 5%;
+            --move-x: 30px;
+            animation-duration: 18s;
+            animation-delay: 0s;
+        }
+        
+        .floating-card:nth-child(2) {
+            --x: 0%;
+            --y: 30%;
+            --move-x: 50px;
+            animation-duration: 22s;
+            animation-delay: -5s;
+        }
+        
+        .floating-card:nth-child(3) {
+            --x: 0%;
+            --y: 55%;
+            --move-x: 40px;
+            animation-duration: 20s;
+            animation-delay: -10s;
+        }
+        
+        .floating-card:nth-child(4) {
+            --x: 0%;
+            --y: 80%;
+            --move-x: 60px;
+            animation-duration: 24s;
+            animation-delay: -15s;
+        }
+        
+        .floating-card:hover {
+            border-color: var(--accent-purple);
+            box-shadow: 0 10px 30px rgba(181, 65, 250, 0.3);
+            background: rgba(31, 22, 79, 0.95);
+        }
+        
+        .floating-card.paused {
+            z-index: 10;
+            border-color: var(--accent-cyan);
+            box-shadow: 0 15px 40px rgba(118, 246, 245, 0.4);
+        }
+        
+        .floating-card h4 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+        
+        .floating-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+        
+        .testimonial-author {
+            display: block;
+            font-size: 12px;
+            color: var(--accent-cyan);
+            font-weight: 600;
+            margin-top: 8px;
+        }
+        
+        .testimonials-cta {
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .see-more-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 24px;
+            background: transparent;
+            color: var(--accent-purple);
+            border: 2px solid var(--accent-purple);
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .see-more-btn:hover {
+            background: var(--accent-purple);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(181, 65, 250, 0.3);
+        }
+        
+        .contact-btn {
+            background: var(--accent-purple);
+            color: white;
+            border-color: var(--accent-purple);
+        }
+        
+        .contact-btn:hover {
+            background: transparent;
+            color: var(--accent-purple);
+        }
+        
+        @media (max-width: 1024px) {
+            .testimonials-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 0 40px;
+            }
+            
+            .testimonials-header {
+                text-align: center;
+            }
+            
+            .testimonials .section-title,
+            .testimonials .section-description {
+                text-align: center;
+            }
+            
+            .testimonials-cta {
+                text-align: center !important;
+            }
+            
+            .testimonials-grid {
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .floating-card {
+                position: relative !important;
+                transform: none !important;
+                width: 100%;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 80px;
+            background: var(--secondary-dark);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-right {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .nav-links {
+                gap: 20px;
+            }
+            
+            .auth-buttons {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .auth-buttons {
+                display: none;
+            }
+            
+            .hamburger-menu {
+                display: flex;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: left;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .hero-visual {
+                display: none;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+            
+            .services-timeline {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .services-timeline::before,
+            .wave-line {
+                display: none;
+            }
+            
+            .service-item {
+                max-width: 400px;
+                margin-top: 0 !important;
+            }
+
+            .partners-container {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <span>K<span style="color: #1f164f;">4</span>iRox</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Características</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <a href="#login" class="login-button">Iniciar Sesión</a>
+            </div>
+            <div class="hamburger-menu" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#servicios">Características</a></li>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="#login" class="login-button">Iniciar Sesión</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>La única IA que<br><span style="font-style: italic; font-weight: 400;">respeta tu privacidad</span></h1>
+                <p>K4iRox es la única IA empresarial 100% privada. Sin almacenamiento en la nube, sin compartir datos con terceros. Descarga toda tu información al terminar cada sesión.</p>
+                <a href="#contacto" class="cta-button">
+                    <div class="play-icon"></div>
+                    Solicitar Demo Privada
+                </a>
+            </div>
+            <div class="hero-visual">
+                <div class="fluid-shape">
+                    <div class="ring"></div>
+                </div>
+                <div class="floating-orb orb-1"></div>
+                <div class="floating-orb orb-2"></div>
+                <div class="floating-orb orb-3"></div>
+                <div class="floating-orb orb-4"></div>
+                <div class="floating-orb orb-5"></div>
+                <div class="floating-orb orb-6"></div>
+                <div class="floating-orb orb-7"></div>
+                <div class="floating-orb orb-8"></div>
+                <div class="floating-orb orb-9"></div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Features Section -->
+    <section class="features" id="servicios">
+        <div class="features-container">
+            <p class="section-label">Seguridad sin compromisos</p>
+            <h2 class="section-title">La IA de confianza para sectores<br>con datos sensibles</h2>
+            <p class="section-description">Ideal para hospitales, despachos legales, administraciones públicas y empresas que valoran la privacidad</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <div class="icon-3d"></div>
+                    </div>
+                    <h3>Cero Almacenamiento</h3>
+                    <p>Ningún dato se guarda en nuestros servidores. Todo se procesa y elimina al finalizar tu sesión.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <div class="icon-3d"></div>
+                    </div>
+                    <h3>Descarga Completa</h3>
+                    <p>Exporta toda tu conversación e información generada directamente a tu dispositivo local.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <div class="icon-3d"></div>
+                    </div>
+                    <h3>Cumplimiento Legal</h3>
+                    <p>Cumple con GDPR, HIPAA y regulaciones de protección de datos para sectores regulados.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <div class="icon-3d"></div>
+                    </div>
+                    <h3>Planes Empresariales</h3>
+                    <p>Diferentes opciones de licenciamiento adaptadas a las necesidades de tu organización.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="services" id="nosotros">
+        <div class="services-container">
+            <p class="section-label">Nosotros</p>
+            <h2 class="section-title">Los <span style="font-style: italic; font-weight: 400;">4 fundamentos</span> que<br>nos definen como marca</h2>
+            <p class="section-description">K4iRox nace del concepto KAIROS: el momento oportuno. Creemos que ha llegado el momento de una IA que respete verdaderamente tu privacidad.</p>
+            
+            <div class="services-timeline">
+                <div class="wave-line">
+                    <svg viewBox="0 0 900 100" preserveAspectRatio="none">
+                        <defs>
+                            <linearGradient id="gradient-line" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#76f6f5;stop-opacity:0.8" />
+                                <stop offset="50%" style="stop-color:#b541fa;stop-opacity:0.8" />
+                                <stop offset="100%" style="stop-color:#76f6f5;stop-opacity:0.8" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M 0 50 Q 150 20 225 50 T 450 50 Q 600 80 675 50 T 900 50" />
+                    </svg>
+                </div>
+                <div class="service-item">
+                    <div class="service-circle">01</div>
+                    <h3>Máxima Eficiencia</h3>
+                    <p>Timing perfecto para resultados óptimos en cada proceso.</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-circle">02</div>
+                    <h3>Seguridad Integral</h3>
+                    <p>Protección completa de información sensible en todo momento.</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-circle">03</div>
+                    <h3>Privacidad Garantizada</h3>
+                    <p>Servidores propios y dedicados para tu tranquilidad.</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-circle">04</div>
+                    <h3>Automatización Inteligente</h3>
+                    <p>Gestión fluida y adaptativa para tu organización.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="testimonials-container">
+            
+            <div class="testimonials-header">
+                <p class="section-label">Casos de éxito</p>
+                <h2 class="section-title">Protegemos la <span style="font-style: italic; font-weight: 400;">privacidad</span> de<br>sectores críticos</h2>
+                <p class="section-description">Descubre cómo K4iRox ayuda a organizaciones<br>a mantener sus datos seguros</p>
+                
+                <div class="testimonials-cta" style="margin-top: 40px; text-align: left; display: flex; gap: 20px;">
+                    <a href="#testimonials-full" class="see-more-btn">
+                        Ver más casos de éxito
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                            <polyline points="12 5 19 12 12 19"/>
+                        </svg>
+                    </a>
+                    <a href="#contacto" class="see-more-btn contact-btn">
+                        Contáctanos
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="testimonials-grid" id="testimonials-container">
+                <div style="position: relative; width: 100%; height: 100%;">
+                <div class="floating-card">
+                    <h4>Hospital Sant Joan - Barcelona</h4>
+                    <p>"Procesamos 50.000 historiales al mes sin ningún dato en la nube. Por fin podemos usar IA respetando la LOPD."</p>
+                    <span class="testimonial-author">Dra. Elena Ruiz, Directora TI</span>
+                </div>
+                
+                <div class="floating-card">
+                    <h4>Bufete Martínez & Asociados</h4>
+                    <p>"K4iRox nos permite analizar contratos complejos sin comprometer el secreto profesional. Ahorro de 70% en tiempo."</p>
+                    <span class="testimonial-author">Juan Martínez, Socio Director</span>
+                </div>
+                
+                <div class="floating-card">
+                    <h4>Ayuntamiento de Valencia</h4>
+                    <p>"Automatizamos trámites ciudadanos cumpliendo GDPR. Los datos nunca salen de nuestros servidores."</p>
+                    <span class="testimonial-author">Carlos López, Concejal de Innovación</span>
+                </div>
+                
+                <div class="floating-card">
+                    <h4>Clínica Dental Sonrisa</h4>
+                    <p>"Gestionamos fichas de 10.000 pacientes con IA. Al terminar, descargamos todo y borramos. Total tranquilidad."</p>
+                    <span class="testimonial-author">María García, Gerente</span>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="#">Privacidad</a>
+                <a href="#">Términos</a>
+                <a href="#">Contacto</a>
+            </div>
+            <div class="footer-right">
+                © 2025 K4iRox - Tu IA privada. Sin almacenamiento. Sin compromisos.
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Hamburger menu functionality
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const body = document.body;
+        
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
+        });
+        
+        // Close menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                body.style.overflow = 'auto';
+            });
+        });
+    </script>
+    <script src="main.js"></script>
+    <script>
+        // Floating cards with collision detection
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('testimonials-container');
+            const cards = document.querySelectorAll('.floating-card');
+            
+            if (!container || cards.length === 0) return;
+            
+            // Disable CSS animation
+            cards.forEach(card => {
+                card.style.animation = 'none';
+            });
+            
+            // Card data
+            const cardData = [];
+            const containerRect = container.getBoundingClientRect();
+            
+            cards.forEach((card, index) => {
+                card.style.position = 'absolute';
+                const rect = card.getBoundingClientRect();
+                
+                // Initial positions - distributed across width
+                const positions = [
+                    { x: Math.random() * (containerRect.width - 250), y: containerRect.height * 0.10 },
+                    { x: Math.random() * (containerRect.width - 250), y: containerRect.height * 0.35 },
+                    { x: Math.random() * (containerRect.width - 250), y: containerRect.height * 0.60 },
+                    { x: Math.random() * (containerRect.width - 250), y: containerRect.height * 0.85 }
+                ];
+                
+                // Random initial directions
+                const direction = Math.random() > 0.5 ? 1 : -1;
+                
+                cardData.push({
+                    element: card,
+                    x: positions[index].x,
+                    y: positions[index].y,
+                    vx: direction * (1 + Math.random() * 1), // Random speed and direction
+                    vy: (Math.random() - 0.5) * 0.3,
+                    width: 250,
+                    height: rect.height,
+                    paused: false
+                });
+            });
+            
+            // Collision detection
+            function checkCollision(card1, card2) {
+                return card1.x < card2.x + card2.width &&
+                       card1.x + card1.width > card2.x &&
+                       card1.y < card2.y + card2.height &&
+                       card1.y + card1.height > card2.y;
+            }
+            
+            // Handle collision with proper bounce
+            function handleCollision(card1, card2) {
+                const dx = (card1.x + card1.width/2) - (card2.x + card2.width/2);
+                const dy = (card1.y + card1.height/2) - (card2.y + card2.height/2);
+                const distance = Math.sqrt(dx*dx + dy*dy);
+                const minDistance = 260;
+                
+                if (distance < minDistance && distance > 0) {
+                    // Normalize collision vector
+                    const nx = dx / distance;
+                    const ny = dy / distance;
+                    
+                    // Separate overlapping cards
+                    const overlap = minDistance - distance;
+                    card1.x += nx * overlap * 0.5;
+                    card1.y += ny * overlap * 0.5;
+                    card2.x -= nx * overlap * 0.5;
+                    card2.y -= ny * overlap * 0.5;
+                    
+                    // Calculate relative velocity
+                    const dvx = card1.vx - card2.vx;
+                    const dvy = card1.vy - card2.vy;
+                    const dvn = dvx * nx + dvy * ny;
+                    
+                    // Don't resolve if velocities are separating
+                    if (dvn > 0) return;
+                    
+                    // Apply impulse
+                    const impulse = dvn * 0.8; // Some energy loss
+                    card1.vx -= impulse * nx;
+                    card1.vy -= impulse * ny;
+                    card2.vx += impulse * nx;
+                    card2.vy += impulse * ny;
+                }
+            }
+            
+            // Animation loop
+            function animate() {
+                const rect = container.getBoundingClientRect();
+                
+                cardData.forEach((card, i) => {
+                    if (!card.paused) {
+                        // Update position
+                        card.x += card.vx;
+                        card.y += card.vy;
+                        
+                        // Bounce off walls - maintain most velocity
+                        if (card.x <= 0) {
+                            card.x = 0;
+                            card.vx = Math.abs(card.vx) * 0.95;
+                        } else if (card.x + card.width >= rect.width) {
+                            card.x = rect.width - card.width;
+                            card.vx = -Math.abs(card.vx) * 0.95;
+                        }
+                        
+                        if (card.y <= 0) {
+                            card.y = 0;
+                            card.vy = Math.abs(card.vy) * 0.9;
+                        } else if (card.y + card.height >= rect.height) {
+                            card.y = rect.height - card.height;
+                            card.vy = -Math.abs(card.vy) * 0.9;
+                        }
+                        
+                        // Check collisions
+                        for (let j = i + 1; j < cardData.length; j++) {
+                            if (!cardData[j].paused && checkCollision(card, cardData[j])) {
+                                handleCollision(card, cardData[j]);
+                            }
+                        }
+                        
+                        // Limit speed but allow both directions
+                        card.vx = Math.max(-2, Math.min(2, card.vx));
+                        card.vy = Math.max(-0.8, Math.min(0.8, card.vy));
+                        
+                        // Maintain minimum horizontal speed
+                        if (Math.abs(card.vx) < 0.5) {
+                            card.vx = card.vx > 0 ? 0.5 : -0.5;
+                        }
+                        
+                        // Apply position
+                        card.element.style.transform = `translate(${card.x}px, ${card.y}px)`;
+                    }
+                });
+                
+                requestAnimationFrame(animate);
+            }
+            
+            // Click to pause/resume
+            cards.forEach((card, index) => {
+                card.addEventListener('click', () => {
+                    const allPaused = cardData.every(c => c.paused);
+                    cardData.forEach(c => {
+                        c.paused = !allPaused;
+                        if (c.paused) {
+                            c.element.classList.add('paused');
+                        } else {
+                            c.element.classList.remove('paused');
+                        }
+                    });
+                });
+            });
+            
+            // Start animation
+            animate();
+        });
+    </script>
+</body>
+</html>
