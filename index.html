@@ -1808,6 +1808,263 @@
                 font-size: 18px;
             }
         }
+        
+        /* ESTILOS RESPONSIVOS COMPLETOS */
+        
+        /* Botón menú móvil */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            flex-direction: column;
+            gap: 4px;
+            z-index: 1001;
+        }
+        
+        .mobile-menu-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: white;
+            transition: all 0.3s ease;
+        }
+        
+        /* Tablet (768px - 1024px) */
+        @media (max-width: 1024px) {
+            .hero-container {
+                padding: 0 30px;
+            }
+            
+            .hero-content h1 {
+                font-size: 48px;
+            }
+            
+            .hero-content p {
+                font-size: 18px;
+            }
+            
+            .features-grid {
+                gap: 24px;
+            }
+            
+            .section-title {
+                font-size: 36px;
+            }
+        }
+        
+        /* Móvil (máximo 768px) */
+        @media (max-width: 768px) {
+            /* Navegación móvil */
+            .mobile-menu-toggle {
+                display: flex;
+            }
+            
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: rgba(22, 17, 58, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 20px;
+                gap: 16px;
+                border-bottom: 1px solid rgba(181, 65, 250, 0.2);
+                z-index: 1000;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links a {
+                font-size: 18px;
+                padding: 12px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+            
+            /* Hero */
+            .hero {
+                padding: 100px 0 60px;
+            }
+            
+            .hero-container {
+                padding: 0 20px;
+            }
+            
+            .hero-content {
+                text-align: center;
+                max-width: 100%;
+            }
+            
+            .hero-content h1 {
+                font-size: 36px;
+                line-height: 1.2;
+            }
+            
+            .hero-content p {
+                font-size: 16px;
+                margin-bottom: 24px;
+            }
+            
+            .hero-visual {
+                display: none;
+            }
+            
+            /* Features */
+            .features {
+                padding: 60px 20px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .feature-card {
+                padding: 24px;
+            }
+            
+            .feature-icon {
+                width: 48px;
+                height: 48px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+                margin-bottom: 12px;
+            }
+            
+            .section-description {
+                font-size: 16px;
+                margin-bottom: 32px;
+            }
+            
+            /* Servicios */
+            .services {
+                padding: 60px 20px;
+            }
+            
+            .services-timeline {
+                padding: 0;
+            }
+            
+            .service-item {
+                padding: 20px;
+                margin-bottom: 16px;
+            }
+            
+            .service-circle {
+                width: 48px;
+                height: 48px;
+                font-size: 16px;
+            }
+            
+            .service-item h3 {
+                font-size: 18px;
+            }
+            
+            .service-item p {
+                font-size: 14px;
+            }
+            
+            /* Testimonios */
+            .testimonials {
+                padding: 60px 20px;
+            }
+            
+            .testimonials-grid {
+                height: auto;
+                min-height: 400px;
+            }
+            
+            .floating-card {
+                position: relative;
+                width: 100%;
+                padding: 20px;
+                margin-bottom: 16px;
+                transform: none;
+                animation: none;
+            }
+            
+            /* Footer */
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 0 20px;
+                text-align: center;
+            }
+            
+            .footer-logo {
+                font-size: 36px;
+            }
+            
+            .footer-links {
+                grid-template-columns: 1fr;
+                gap: 24px;
+                text-align: center;
+            }
+            
+            /* Botones */
+            .cta-button {
+                padding: 12px 24px;
+                font-size: 14px;
+                width: 100%;
+                text-align: center;
+                justify-content: center;
+            }
+            
+            /* Ocultar elementos decorativos en móvil */
+            .floating-orb,
+            .footer-orb {
+                display: none;
+            }
+        }
+        
+        /* Móvil pequeño (máximo 480px) */
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 28px;
+            }
+            
+            .hero-content p {
+                font-size: 14px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+            
+            .feature-card {
+                padding: 20px;
+            }
+            
+            .service-item {
+                padding: 16px;
+            }
+        }
+        
+        /* Móvil muy pequeño (máximo 375px) */
+        @media (max-width: 375px) {
+            .hero-container,
+            .features,
+            .services,
+            .testimonials {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+            
+            .hero-content h1 {
+                font-size: 24px;
+            }
+            
+            .section-title {
+                font-size: 20px;
+            }
+        }
     </style>
 </head>
 <body>
