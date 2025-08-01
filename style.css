@@ -507,46 +507,353 @@ footer {
 }
 
 /* Responsive Design */
+
+/* Tablet Styles (768px - 1024px) */
+@media (max-width: 1024px) {
+    .container {
+        max-width: 100%;
+        padding: 0 30px;
+    }
+    
+    .hero-content {
+        gap: 48px;
+    }
+    
+    .hero-text h1 {
+        font-size: 48px;
+    }
+    
+    .hero-text p {
+        font-size: 18px;
+    }
+    
+    .pricing-grid {
+        gap: 24px;
+    }
+    
+    .pricing-card {
+        padding: 32px;
+    }
+}
+
+/* Mobile Navigation Menu */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--white);
+    cursor: pointer;
+    padding: 8px;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.mobile-menu-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--white);
+    transition: all 0.3s ease;
+}
+
+/* Mobile Styles (Max 768px) */
 @media (max-width: 768px) {
+    /* Container and Global */
     .container {
         padding: 0 20px;
+    }
+    
+    /* Navigation */
+    .mobile-menu-toggle {
+        display: flex;
+    }
+    
+    .nav-links {
+        display: none;
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        padding: 20px;
+        gap: 16px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .nav-links.active {
+        display: flex;
+    }
+    
+    .nav-links a {
+        font-size: 18px;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    /* Hero Section */
+    .hero {
+        padding-top: 80px;
+        min-height: auto;
+        padding-bottom: 60px;
     }
     
     .hero-content {
         grid-template-columns: 1fr;
         gap: 32px;
+        text-align: center;
     }
     
     .hero-text h1 {
         font-size: 36px;
+        margin-bottom: 16px;
     }
     
-    .features-grid,
+    .hero-text p {
+        font-size: 16px;
+        margin-bottom: 24px;
+    }
+    
+    /* Features Section */
+    .features {
+        padding: 60px 0;
+    }
+    
+    .features h2 {
+        font-size: 28px;
+        margin-bottom: 12px;
+    }
+    
+    .features .subtitle {
+        font-size: 16px;
+        margin-bottom: 32px;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .feature-card {
+        padding: 24px;
+    }
+    
+    .feature-icon {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 16px;
+        font-size: 20px;
+    }
+    
+    .feature-card h3 {
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+    
+    .feature-card p {
+        font-size: 14px;
+    }
+    
+    /* Pricing Section */
+    .pricing {
+        padding: 60px 0;
+    }
+    
+    .pricing h2 {
+        font-size: 28px;
+        margin-bottom: 32px;
+    }
+    
     .pricing-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
     }
     
-    .nav-links {
-        display: none;
+    .pricing-card {
+        padding: 32px 24px;
     }
     
     .pricing-card.popular {
         transform: none;
+        margin: 0;
+    }
+    
+    .pricing-card h3 {
+        font-size: 20px;
+    }
+    
+    .price {
+        font-size: 36px;
+    }
+    
+    /* FAQ Section */
+    .faq {
+        padding: 60px 0;
+    }
+    
+    .faq h2 {
+        font-size: 28px;
+        margin-bottom: 32px;
+    }
+    
+    .faq-question {
+        padding: 16px;
+        font-size: 16px;
+    }
+    
+    /* Footer */
+    footer {
+        padding: 32px 0;
+    }
+    
+    .footer-content {
+        gap: 24px;
+        text-align: center;
+    }
+    
+    /* Modal */
+    .modal-content {
+        margin: 10% auto;
+        padding: 32px 24px;
+        width: 95%;
+    }
+    
+    .modal h2 {
+        font-size: 20px;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: 12px;
+        font-size: 14px;
     }
 }
 
+/* Small Mobile Styles (Max 480px) */
 @media (max-width: 480px) {
+    /* Typography Scale Down */
     .hero-text h1 {
         font-size: 28px;
     }
     
     .hero-text p {
-        font-size: 16px;
+        font-size: 14px;
+        line-height: 1.5;
     }
     
     .features h2,
     .pricing h2,
     .faq h2 {
-        font-size: 28px;
+        font-size: 24px;
+    }
+    
+    /* Smaller Components */
+    .logo {
+        font-size: 20px;
+    }
+    
+    .logo-symbol {
+        width: 24px;
+        height: 24px;
+        font-size: 14px;
+    }
+    
+    .cta-button {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+    
+    .price {
+        font-size: 32px;
+    }
+    
+    .faq-question {
+        font-size: 14px;
+        padding: 14px;
+    }
+    
+    /* Adjust spacing */
+    .features,
+    .pricing,
+    .faq {
+        padding: 40px 0;
+    }
+    
+    .hero {
+        padding-bottom: 40px;
+    }
+}
+
+/* Very Small Mobile (Max 375px) */
+@media (max-width: 375px) {
+    .container {
+        padding: 0 16px;
+    }
+    
+    .hero-text h1 {
+        font-size: 24px;
+    }
+    
+    .features h2,
+    .pricing h2,
+    .faq h2 {
+        font-size: 20px;
+    }
+    
+    .feature-card {
+        padding: 20px;
+    }
+    
+    .pricing-card {
+        padding: 24px 20px;
+    }
+}
+
+/* Additional Responsive Adjustments */
+@media (max-width: 768px) {
+    /* Hero Visual Effects */
+    .hero::before {
+        transform: rotate(-5deg);
+    }
+    
+    /* FAQ Section */
+    .faq-item {
+        margin-bottom: 12px;
+    }
+    
+    .faq-answer {
+        padding: 16px;
+        font-size: 14px;
+    }
+    
+    /* Buttons */
+    .cta-button {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+    
+    /* Modal Responsive */
+    .modal-content {
+        margin: 20% auto;
+    }
+}
+
+/* Landscape Mobile */
+@media (max-height: 600px) and (orientation: landscape) {
+    .hero {
+        min-height: 100vh;
+        padding-top: 70px;
+        padding-bottom: 40px;
+    }
+    
+    .hero-text h1 {
+        font-size: 32px;
+    }
+    
+    .hero-text p {
+        font-size: 14px;
     }
 }
