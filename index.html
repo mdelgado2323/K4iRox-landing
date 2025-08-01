@@ -2150,7 +2150,7 @@
         
         /* OVERRIDE FINAL PARA MÓVIL - MÁXIMA PRIORIDAD */
         @media screen and (max-width: 768px) {
-            /* Eliminar márgenes y paddings del header */
+            /* Corregir header - mantener fondo oscuro con transparencia */
             header {
                 position: fixed !important;
                 top: 0 !important;
@@ -2160,6 +2160,9 @@
                 margin: 0 !important;
                 padding: 0 !important;
                 border-radius: 0 !important;
+                background: rgba(22, 17, 58, 0.95) !important;
+                backdrop-filter: blur(10px) !important;
+                border-bottom: 1px solid rgba(181, 65, 250, 0.2) !important;
             }
             
             /* Ajustar todas las secciones */
@@ -2197,6 +2200,93 @@
             .footer-orb,
             .hero-visual {
                 display: none !important;
+            }
+            
+            /* Corregir tamaños de texto específicos */
+            .hero-content h1 {
+                font-size: 32px !important;
+                line-height: 1.2 !important;
+                margin-bottom: 16px !important;
+                text-align: center !important;
+            }
+            
+            .hero-content p {
+                font-size: 16px !important;
+                line-height: 1.5 !important;
+                text-align: center !important;
+                margin-bottom: 24px !important;
+                padding: 0 10px !important;
+            }
+            
+            /* Corregir botones */
+            .cta-button {
+                display: inline-flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                width: auto !important;
+                max-width: 280px !important;
+                margin: 0 auto !important;
+                padding: 14px 28px !important;
+                font-size: 16px !important;
+                border-radius: 50px !important;
+                text-align: center !important;
+            }
+            
+            /* Corregir sección de servicios */
+            .section-label {
+                font-size: 14px !important;
+                text-transform: uppercase !important;
+                letter-spacing: 1px !important;
+                color: var(--accent-purple) !important;
+                margin-bottom: 8px !important;
+            }
+            
+            .section-title {
+                font-size: 28px !important;
+                line-height: 1.3 !important;
+                margin-bottom: 16px !important;
+                padding: 0 10px !important;
+            }
+            
+            .section-description {
+                font-size: 16px !important;
+                line-height: 1.5 !important;
+                padding: 0 10px !important;
+                margin-bottom: 32px !important;
+            }
+            
+            /* Corregir navegación móvil */
+            .mobile-menu {
+                background: rgba(22, 17, 58, 0.98) !important;
+                padding: 20px !important;
+            }
+            
+            /* Corregir los botones flotantes del footer */
+            .footer-cta-action {
+                display: flex !important;
+                gap: 10px !important;
+                flex-wrap: wrap !important;
+                justify-content: center !important;
+                padding: 0 10px !important;
+            }
+            
+            .footer-cta-action .cta-button {
+                width: 100% !important;
+                max-width: none !important;
+            }
+            
+            /* Ajustar el número del servicio */
+            .service-circle {
+                width: 50px !important;
+                height: 50px !important;
+                font-size: 18px !important;
+                margin-bottom: 16px !important;
+            }
+            
+            /* Corregir overflow de texto */
+            h1, h2, h3, p {
+                word-break: break-word !important;
+                hyphens: auto !important;
             }
         }
     </style>
