@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K4iRox - IA Segura y Privada | La IA que domina el momento oportuno</title>
+    <meta name="description" content="Inteligencia Artificial que NO guarda ni vende tus datos. Soluciones seguras para médicos, abogados y administraciones públicas.">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #1a73e8;
+            --secondary-color: #0d47a1;
+            --accent-color: #4285f4;
+            --dark-color: #1f1f1f;
+            --light-bg: #f8f9fa;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-link {
+            color: #333;
+            font-weight: 500;
+            margin: 0 1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .btn-primary-custom {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            border: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-primary-custom:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 0;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+        }
+
+        .badge-custom {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            display: inline-block;
+        }
+
+        /* Features */
+        .features {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            height: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Services */
+        .services {
+            padding: 80px 0;
+        }
+
+        .service-box {
+            text-align: center;
+            padding: 2rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            transition: all 0.3s;
+            height: 100%;
+        }
+
+        .service-box:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Security Section */
+        .security {
+            background: var(--dark-color);
+            color: white;
+            padding: 80px 0;
+        }
+
+        .security-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .security-item i {
+            font-size: 2rem;
+            color: #4caf50;
+            margin-right: 1rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: var(--gradient);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #1f1f1f;
+            color: white;
+            padding: 40px 0;
+        }
+
+        .footer-links a {
+            color: #888;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .navbar-nav {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-shield-alt"></i> K4iRox</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#seguridad">Seguridad</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#nosotros">Nosotros</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+                    <li class="nav-item">
+                        <button class="btn btn-primary-custom ms-3">Solicitar Demo</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <span class="badge-custom">
+                        <i class="fas fa-lock"></i> 100% Privado y Seguro
+                    </span>
+                    <h1>La IA que domina el momento oportuno</h1>
+                    <p>Inteligencia Artificial que NO guarda ni vende tus datos. Diseñada para sectores críticos donde la confidencialidad es esencial.</p>
+                    <div class="d-flex gap-3">
+                        <button class="btn btn-light btn-lg">
+                            <i class="fas fa-play-circle"></i> Ver Demo
+                        </button>
+                        <button class="btn btn-outline-light btn-lg">
+                            Solicitar Prueba Gratuita
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="text-center">
+                        <i class="fas fa-brain" style="font-size: 15rem; opacity: 0.3;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold">¿Por qué K4iRox?</h2>
+                <p class="lead">La única IA diseñada para proteger tu información más sensible</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-secret"></i>
+                        </div>
+                        <h3>Privacidad Total</h3>
+                        <p>Tus datos nunca se almacenan. Descarga local de toda la información al finalizar cada sesión.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h3>Servidores Dedicados</h3>
+                        <p>Infraestructura exclusiva sin compartir recursos. Tu información está completamente aislada.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h3>Cumplimiento Legal</h3>
+                        <p>Cumple con RGPD, LOPD y todas las normativas de protección de datos más estrictas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="servicios">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold">Soluciones Especializadas</h2>
+                <p class="lead">IA adaptada a las necesidades de cada sector</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="service-box">
+                        <i class="fas fa-stethoscope feature-icon"></i>
+                        <h4>K4iRox Medical</h4>
+                        <p>Para hospitales y clínicas. Historiales médicos 100% confidenciales.</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="service-box">
+                        <i class="fas fa-balance-scale feature-icon"></i>
+                        <h4>K4iRox Legal</h4>
+                        <p>Para despachos de abogados. Documentos legales bajo secreto profesional.</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="service-box">
+                        <i class="fas fa-landmark feature-icon"></i>
+                        <h4>K4iRox Gov</h4>
+                        <p>Para administraciones públicas. Datos ciudadanos protegidos.</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="service-box">
+                        <i class="fas fa-briefcase feature-icon"></i>
+                        <h4>K4iRox Business</h4>
+                        <p>Para empresas. Información corporativa confidencial.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Section -->
+    <section class="security" id="seguridad">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="display-4 fw-bold mb-4">Seguridad Sin Compromisos</h2>
+                    <div class="security-item">
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <h5>Sin almacenamiento en la nube</h5>
+                            <p>Tus datos nunca salen de tu entorno controlado</p>
+                        </div>
+                    </div>
+                    <div class="security-item">
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <h5>Encriptación de grado militar</h5>
+                            <p>AES-256 en todas las comunicaciones</p>
+                        </div>
+                    </div>
+                    <div class="security-item">
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <h5>Auditorías continuas</h5>
+                            <p>Certificaciones ISO 27001 y SOC 2</p>
+                        </div>
+                    </div>
+                    <div class="security-item">
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <h5>Borrado automático</h5>
+                            <p>Eliminación completa de datos tras cada sesión</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="text-center">
+                        <img src="https://via.placeholder.com/500x400/667eea/ffffff?text=Seguridad+Total" alt="Seguridad K4iRox" class="img-fluid rounded">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="features" id="nosotros">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="display-4 fw-bold mb-4">Basado en Kairos</h2>
+                    <p class="lead">El momento oportuno para la IA segura</p>
+                    <p>K4iRox nace de la necesidad de sectores críticos que no podían beneficiarse de la IA por restricciones de confidencialidad. Inspirados en Kairos, el dios griego del momento oportuno, creamos la solución perfecta en el momento exacto.</p>
+                    <p>Desarrollado con el innovador BMAD Method, garantizamos la máxima calidad y seguridad en cada línea de código.</p>
+                    <div class="mt-4">
+                        <p><i class="fas fa-map-marker-alt text-primary"></i> <strong>Sede:</strong> Av. Rekalde 31, Donostia-San Sebastián</p>
+                        <p><i class="fas fa-phone text-primary"></i> <strong>Teléfono:</strong> 900 834 488</p>
+                        <p><i class="fas fa-building text-primary"></i> <strong>Empresa:</strong> Secret IA</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="text-center">
+                        <i class="fas fa-clock" style="font-size: 15rem; color: var(--primary-color); opacity: 0.2;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="contacto">
+        <div class="container">
+            <h2>¿Listo para proteger tu información?</h2>
+            <p class="lead mb-4">Solicita una demostración gratuita y descubre cómo K4iRox puede transformar tu organización</p>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <form class="d-flex flex-column gap-3">
+                        <input type="text" class="form-control form-control-lg" placeholder="Nombre completo">
+                        <input type="email" class="form-control form-control-lg" placeholder="Email corporativo">
+                        <input type="tel" class="form-control form-control-lg" placeholder="Teléfono">
+                        <select class="form-control form-control-lg">
+                            <option>Selecciona tu sector</option>
+                            <option>Médico/Salud</option>
+                            <option>Legal/Abogacía</option>
+                            <option>Administración Pública</option>
+                            <option>Empresa/Corporación</option>
+                            <option>Otro</option>
+                        </select>
+                        <button type="submit" class="btn btn-light btn-lg">
+                            <i class="fas fa-paper-plane"></i> Solicitar Demo Gratuita
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h4 class="mb-3"><i class="fas fa-shield-alt"></i> K4iRox</h4>
+                    <p>La IA que domina el momento oportuno</p>
+                    <p class="text-muted">Desarrollado con BMAD Method</p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="mb-3">Enlaces Rápidos</h5>
+                    <div class="footer-links d-flex flex-column">
+                        <a href="#servicios">Servicios</a>
+                        <a href="#seguridad">Seguridad y Privacidad</a>
+                        <a href="#nosotros">Sobre Nosotros</a>
+                        <a href="#contacto">Contacto</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="mb-3">Contacto</h5>
+                    <p><i class="fas fa-phone"></i> 900 834 488</p>
+                    <p><i class="fas fa-envelope"></i> info@k4irox.ai</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Av. Rekalde 31, Donostia</p>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: #444;">
+            <div class="text-center">
+                <p>&copy; 2024 K4iRox - Secret IA. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Smooth Scroll -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

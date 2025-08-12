@@ -32,25 +32,131 @@
             /* Hero Section Mejorado */
             .masthead {
                 background: linear-gradient(to bottom, rgba(10, 10, 26, 0.8) 0%, rgba(31, 22, 79, 0.9) 75%, #0A0A1A 100%), url("assets/img/bg-masthead.jpg");
+                padding-top: 8rem !important;
+                padding-bottom: 6rem !important;
             }
             
+            /* Título más grande */
             .masthead h1 {
-                font-size: 3rem !important;
-                font-weight: 800 !important;
+                font-size: 2.8rem !important; /* Aumentado de 2.4rem */
+                line-height: 1.3 !important;
+                margin: 3rem auto 1.5rem auto !important;
+                max-width: 900px !important;
+                font-weight: 600 !important;
+                color: #FFFFFF !important;
                 letter-spacing: -2px !important;
-                line-height: 1.1 !important;
-                margin-bottom: 1.5rem !important;
-                background: linear-gradient(135deg, #fff 0%, #00CEC9 100%);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                background-clip: text;
             }
             
             .masthead h2 {
-                font-size: 1.5rem !important;
+                font-size: 0.95rem !important;
                 line-height: 1.6 !important;
                 margin-bottom: 3rem !important;
-                color: rgba(255,255,255,0.9) !important;
+                color: rgba(255, 255, 255, 0.7) !important;
+                max-width: 650px !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+            
+            /* Subtítulo más pequeño */
+            .masthead p {
+                font-size: 0.85rem !important; /* Reducido de 0.95rem */
+                max-width: 750px !important;
+                margin: 0 auto 2rem auto !important;
+                line-height: 1.6 !important;
+                font-weight: 400 !important;
+                color: rgba(255, 255, 255, 0.7) !important;
+            }
+            
+            /* Tech Lines Animation */
+            .tech-lines {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 1;
+                overflow: hidden;
+            }
+
+            .line {
+                position: absolute;
+                background: linear-gradient(90deg, transparent, #00CEC9, transparent);
+                height: 1px;
+                animation: moveLine 15s infinite linear;
+            }
+
+            .line:nth-child(1) { top: 20%; animation-delay: 0s; }
+            .line:nth-child(2) { top: 40%; animation-delay: 5s; }
+            .line:nth-child(3) { top: 60%; animation-delay: 10s; }
+
+            @keyframes moveLine {
+                0% { left: -100%; width: 0%; }
+                50% { width: 100%; }
+                100% { left: 100%; width: 0%; }
+            }
+            
+            /* Centrar el contenedor del botón */
+            .masthead .btn-container {
+                text-align: center !important;
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+                width: 100% !important;
+                margin-top: 2rem !important;
+            }
+
+            /* Botón ajustado con icono */
+            .btn-primary {
+                padding: 0.8rem 2rem !important;
+                font-size: 1rem !important;
+                font-weight: 500 !important;
+                border-radius: 10px !important;
+                display: inline-flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                gap: 0.5rem !important; /* Espacio entre icono y texto */
+                text-decoration: none !important;
+                border: none !important;
+            }
+
+            /* Icono de flecha */
+            .btn-primary::before {
+                content: "→" !important;
+                font-size: 1.1em !important;
+                font-weight: bold !important;
+                margin-right: 0.3rem !important;
+            }
+
+            /* Alternativa con icono Unicode más moderno */
+            .btn-primary.arrow-icon::before {
+                content: "▶" !important;
+                font-size: 0.9em !important;
+                margin-right: 0.4rem !important;
+            }
+            
+            /* Texto normal - MÁS PESADO */
+            .masthead h1 .normal {
+                color: #FFFFFF !important;
+                font-weight: 700 !important; /* MÁS FUERTE */
+                font-style: normal !important;
+            }
+            
+            /* "IA" - MÁS LIGERO Y CURSIVA */
+            .masthead h1 .key-italic {
+                color: #FFFFFF !important;
+                font-style: italic !important;
+                font-weight: 400 !important; /* MÁS LIGERO */
+                font-size: 1.05em !important;
+            }
+            
+            /* "MOMENTO OPORTUNO" - CURSIVA PESO MEDIO */
+            .masthead h1 .hero-word {
+                color: #FFFFFF !important;
+                font-style: italic !important;
+                font-weight: 500 !important;
+                font-size: 1.1em !important;
+                display: inline-block;
+                letter-spacing: -0.02em;
             }
             
             /* About Section Mejorada */
@@ -197,10 +303,93 @@
                 to { width: 100%; }
             }
             
-            /* Responsive mantiene intacto */
-            @media (max-width: 768px) {
+            /* Responsive para título más grande */
+            @media (max-width: 991px) {
+                .masthead {
+                    padding-top: 7rem !important;
+                }
                 .masthead h1 {
-                    font-size: 2.2rem !important;
+                    font-size: 2.5rem !important; /* Aumentado */
+                    font-weight: 600 !important;
+                }
+                .masthead h1 .normal {
+                    font-weight: 700 !important;
+                }
+                .masthead h1 .key-italic {
+                    font-weight: 400 !important;
+                }
+                .masthead h1 .hero-word {
+                    font-weight: 500 !important;
+                }
+                .masthead h2 {
+                    font-size: 0.9rem !important;
+                    color: rgba(255, 255, 255, 0.75) !important;
+                }
+                .masthead p {
+                    font-size: 0.8rem !important;
+                }
+                .btn-primary {
+                    padding: 0.7rem 1.8rem !important;
+                    font-size: 0.95rem !important;
+                }
+            }
+            
+            @media (max-width: 768px) {
+                .masthead {
+                    padding-top: 6rem !important;
+                }
+                .masthead h1 {
+                    font-size: 2.2rem !important; /* Aumentado */
+                    font-weight: 600 !important;
+                    line-height: 1.4 !important;
+                }
+                .masthead h1 .normal {
+                    font-weight: 700 !important;
+                }
+                .masthead h1 .key-italic {
+                    font-weight: 400 !important;
+                }
+                .masthead h1 .hero-word {
+                    font-weight: 500 !important;
+                }
+                .masthead h2 {
+                    font-size: 0.85rem !important;
+                    color: rgba(255, 255, 255, 0.8) !important;
+                }
+                .masthead p {
+                    font-size: 0.75rem !important; /* Más pequeño */
+                    max-width: 95% !important;
+                }
+                .masthead .btn-container {
+                    margin-top: 1.5rem !important;
+                }
+                
+                .btn-primary {
+                    padding: 0.7rem 1.8rem !important;
+                    font-size: 0.95rem !important;
+                }
+            }
+            
+            @media (max-width: 576px) {
+                .masthead {
+                    padding-top: 6rem !important;
+                }
+                .masthead h1 {
+                    font-size: 2rem !important; /* Aumentado */
+                }
+                .masthead h1 .hero-word {
+                    font-size: 1.05em;
+                }
+                .masthead h2 {
+                    font-size: 0.8rem !important;
+                    color: rgba(255, 255, 255, 0.85) !important;
+                }
+                .masthead p {
+                    font-size: 0.7rem !important; /* Más pequeño */
+                }
+                .btn-primary {
+                    padding: 0.6rem 1.3rem !important;
+                    font-size: 0.85rem !important;
                 }
             }
         </style>
@@ -228,10 +417,16 @@
             <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
                 <div class="d-flex justify-content-center">
                     <div class="text-center">
-                        <h1 class="mx-auto my-0 text-uppercase">LA IA QUE DOMINA EL <em>MOMENTO OPORTUNO</em></h1>
-                        <h2 class="text-white-50 mx-auto mt-2 mb-5">Inteligencia artificial que actúa en el instante preciso sin comprometer tu privacidad</h2>
-                        <p class="text-white-50 mb-4">Basada en Kairos, el momento decisivo. Primera IA que nunca almacena datos.</p>
-                        <a class="btn btn-primary" href="#about">ACCEDER A LA DEMO</a>
+                        <h1 class="mx-auto my-0 text-uppercase">
+                            <span class="normal">LA</span> 
+                            <span class="key-italic">IA</span> 
+                            <span class="normal">QUE DOMINA EL</span><br class="d-none d-md-inline">
+                            <span class="hero-word">MOMENTO OPORTUNO</span>
+                        </h1>
+                        <h2 class="text-white-50 mx-auto mt-2 mb-5">K4iRox es la única IA empresarial 100% privada. Sin almacenamiento en la nube, sin compartir datos con terceros. Descarga toda tu información al terminar cada sesión.</h2>
+                        <div class="btn-container">
+                            <a class="btn btn-primary" href="#about">ACCEDER A LA DEMO</a>
+                        </div>
                     </div>
                 </div>
             </div>

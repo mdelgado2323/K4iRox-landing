@@ -1,0 +1,402 @@
+/* K4iRox Custom Styles - Colores y Degradados de Marca */
+
+:root {
+    /* Colores principales de K4iRox */
+    --k4-primary: #667eea;
+    --k4-secondary: #764ba2;
+    --k4-accent: #4285f4;
+    --k4-dark: #1f1f1f;
+    --k4-light: #f8f9fa;
+    --k4-purple-dark: #5a32a3;
+    
+    /* Degradados de marca */
+    --k4-gradient-main: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --k4-gradient-hover: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    --k4-gradient-soft: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    --k4-gradient-dark: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+}
+
+/* Header con degradado animado */
+#header {
+    background: linear-gradient(-45deg, #667eea, #764ba2, #5a32a3, #4285f4) !important;
+    background-size: 400% 400% !important;
+    animation: gradientShift 15s ease infinite;
+    position: relative;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+#header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+#header > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Logo con efecto */
+#logo h1 a {
+    color: #ffffff !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+#logo h1 a:hover {
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+    transform: translateY(-2px);
+}
+
+#logo p {
+    color: rgba(255, 255, 255, 0.9) !important;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Navegación */
+#nav {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+    padding: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#nav ul li a {
+    color: #ffffff !important;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-radius: 25px;
+    padding: 0.5rem 1.2rem;
+}
+
+#nav ul li a:hover,
+#nav ul li.current a {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Dropdown menus */
+#nav ul li ul {
+    background: var(--k4-gradient-main);
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#nav ul li ul li a {
+    color: #ffffff !important;
+}
+
+#nav ul li ul li a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Secciones con estilo */
+.wrapper.style1 {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+}
+
+.wrapper.style2 {
+    background: #ffffff;
+}
+
+.wrapper.style3 {
+    background: var(--k4-gradient-soft);
+}
+
+/* Títulos de sección */
+.title {
+    background: var(--k4-gradient-main);
+    color: #ffffff !important;
+    padding: 2rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Botones personalizados */
+.button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+    background: var(--k4-gradient-main) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 25px;
+    padding: 0.8rem 2rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.button:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover {
+    background: var(--k4-gradient-hover) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.button.style1 {
+    background: var(--k4-gradient-main) !important;
+}
+
+.button.style2 {
+    background: transparent !important;
+    border: 2px solid var(--k4-primary) !important;
+    color: var(--k4-primary) !important;
+}
+
+.button.style2:hover {
+    background: var(--k4-gradient-main) !important;
+    color: #ffffff !important;
+    border-color: transparent !important;
+}
+
+.button.style3 {
+    background: #ffffff !important;
+    color: var(--k4-primary) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.button.style3:hover {
+    background: var(--k4-gradient-main) !important;
+    color: #ffffff !important;
+}
+
+/* Feature cards */
+.feature-list h3 {
+    color: var(--k4-primary);
+}
+
+.feature-list .icon {
+    background: var(--k4-gradient-main);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Highlights/Service cards */
+.highlight {
+    background: #ffffff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.1);
+    transition: all 0.3s ease;
+}
+
+.highlight:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 40px rgba(102, 126, 234, 0.2);
+}
+
+.highlight h3 a {
+    color: var(--k4-primary) !important;
+    transition: all 0.3s ease;
+}
+
+.highlight h3 a:hover {
+    background: var(--k4-gradient-main);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Footer */
+#footer {
+    background: var(--k4-gradient-dark) !important;
+    color: #ffffff;
+}
+
+#footer .style1 h2 {
+    color: #ffffff !important;
+}
+
+#footer input[type="text"],
+#footer input[type="email"],
+#footer input[type="tel"],
+#footer textarea,
+#footer select {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+}
+
+#footer input[type="text"]:focus,
+#footer input[type="email"]:focus,
+#footer input[type="tel"]:focus,
+#footer textarea:focus,
+#footer select:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--k4-primary);
+    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+}
+
+#footer ::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+#footer .icon {
+    color: var(--k4-primary);
+}
+
+#footer a {
+    color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+}
+
+#footer a:hover {
+    color: var(--k4-primary);
+}
+
+/* Copyright */
+#copyright {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2rem;
+    margin-top: 3rem;
+}
+
+#copyright ul li {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Intro section styles */
+#intro .style1 {
+    color: var(--k4-primary);
+    font-size: 1.2rem;
+}
+
+#intro .style2 {
+    background: var(--k4-gradient-main);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 3rem;
+    font-weight: 800;
+}
+
+#intro .style3 {
+    color: #555;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* Enlaces generales */
+a {
+    color: var(--k4-primary);
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: var(--k4-secondary);
+}
+
+/* Iconos con gradiente */
+h3.icon::before {
+    background: var(--k4-gradient-main);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-right: 0.75rem;
+}
+
+/* Fix para iconos de Font Awesome en las features */
+.feature-list h3.icon.solid.fa-shield-alt::before,
+.feature-list h3.icon.solid.fa-server::before,
+.feature-list h3.icon.solid.fa-lock::before,
+.feature-list h3.icon.solid.fa-certificate::before,
+.feature-list h3.icon.solid.fa-trash::before,
+.feature-list h3.icon.solid.fa-check-circle::before {
+    color: var(--k4-primary) !important;
+}
+
+/* Efectos de scroll suave */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Animaciones de entrada */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.box {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 736px) {
+    .title {
+        font-size: 1.8rem;
+    }
+    
+    #nav {
+        background: var(--k4-gradient-main);
+        border-radius: 0;
+    }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--k4-gradient-main);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--k4-gradient-hover);
+}
+
+/* Servicios page specific styles */
+#medical h3, #legal h3, #gov h3, #business h3, #custom h3 {
+    background: var(--k4-gradient-main);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}

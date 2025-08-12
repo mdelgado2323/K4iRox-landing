@@ -1,0 +1,471 @@
+/* K4iRox Brand Styles - Colores y estilos exactos del sitio original */
+
+:root {
+    /* Colores oficiales de K4iRox */
+    --primary-dark: #1f164f;
+    --secondary-dark: #16113a;
+    --accent-purple: #b541fa;
+    --accent-cyan: #76f6f5;
+    --accent-pink: #b541fa;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0a0;
+    
+    /* Degradados oficiales */
+    --gradient-main: linear-gradient(135deg, #b541fa, #76f6f5);
+    --gradient-purple-cyan: linear-gradient(45deg, #b541fa, #76f6f5);
+    --gradient-dark: linear-gradient(135deg, #1f164f, #16113a);
+}
+
+/* Reset del header con estilo K4iRox */
+#header {
+    background: transparent !important;
+    position: relative;
+    padding: 100px 0 50px;
+}
+
+#header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg,
+                var(--secondary-dark) 0%,
+                rgba(22, 17, 58, 0.8) 10%,
+                rgba(22, 17, 58, 0.4) 25%,
+                transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(181, 65, 250, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 30% 50%, rgba(118, 246, 245, 0.2) 0%, transparent 50%);
+    z-index: -1;
+}
+
+/* Navegación estilo K4iRox */
+#nav {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    background: rgba(181, 65, 250, 0.6) !important;
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    border: 1px solid rgba(181, 65, 250, 0.8);
+    padding: 15px 40px;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+}
+
+#nav ul {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+#nav ul li a {
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+}
+
+#nav ul li a:hover,
+#nav ul li.current > a {
+    color: var(--accent-cyan) !important;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+#nav ul li.current > a {
+    color: white !important;
+    text-decoration: underline;
+    text-underline-offset: 8px;
+    text-decoration-thickness: 2px;
+}
+
+/* Logo estilo K4iRox */
+#logo h1 {
+    font-size: 48px !important;
+    font-weight: 800 !important;
+    letter-spacing: -1px;
+    margin: 80px 0 10px;
+}
+
+#logo h1 a {
+    color: white !important;
+    text-decoration: none;
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+#logo p {
+    color: var(--text-secondary) !important;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+/* Sección Intro con estilo K4iRox */
+#intro {
+    background: transparent !important;
+    padding: 100px 0 80px;
+}
+
+#intro .style1 {
+    color: var(--accent-purple);
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#intro .style2 {
+    font-size: 64px !important;
+    font-weight: 700 !important;
+    line-height: 1.1 !important;
+    margin: 20px 0 30px !important;
+    background: linear-gradient(135deg, white, rgba(255, 255, 255, 0.8));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+#intro .style3 {
+    color: var(--text-secondary) !important;
+    font-size: 18px !important;
+    line-height: 1.6 !important;
+    max-width: 600px;
+    margin: 0 auto 40px;
+}
+
+/* Botones estilo K4iRox */
+.button,
+input[type="submit"],
+input[type="button"] {
+    background: transparent !important;
+    color: var(--accent-purple) !important;
+    border: 2px solid var(--accent-purple) !important;
+    padding: 16px 32px !important;
+    border-radius: 30px !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    transition: all 0.3s ease !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+}
+
+.button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover {
+    background: var(--gradient-purple-cyan) !important;
+    color: white !important;
+    border-color: transparent !important;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 40px rgba(181, 65, 250, 0.4);
+}
+
+.button.style1 {
+    background: var(--gradient-purple-cyan) !important;
+    color: white !important;
+    border: none !important;
+}
+
+.button.style2 {
+    background: transparent !important;
+    border: 2px solid white !important;
+    color: white !important;
+}
+
+.button.style3 {
+    padding: 18px 40px !important;
+    font-size: 16px !important;
+}
+
+/* Títulos de sección */
+.title {
+    background: transparent !important;
+    color: var(--accent-purple) !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    padding: 20px 0 !important;
+    border: none !important;
+}
+
+/* Main sections */
+#main {
+    background: var(--secondary-dark) !important;
+    position: relative;
+}
+
+#main::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 300px;
+    background: linear-gradient(to bottom,
+                transparent 0%,
+                rgba(181, 65, 250, 0.05) 50%,
+                var(--secondary-dark) 100%);
+    z-index: 0;
+}
+
+/* Features */
+.feature-list h3 {
+    color: white !important;
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    margin-bottom: 15px;
+}
+
+.feature-list h3.icon::before {
+    color: var(--accent-purple) !important;
+    margin-right: 15px;
+    font-size: 24px;
+}
+
+.feature-list p {
+    color: var(--text-secondary) !important;
+    line-height: 1.6;
+}
+
+.feature-list section {
+    background: rgba(181, 65, 250, 0.05);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(181, 65, 250, 0.1);
+    transition: all 0.3s ease;
+}
+
+.feature-list section:hover {
+    background: rgba(181, 65, 250, 0.1);
+    border-color: rgba(181, 65, 250, 0.3);
+    transform: translateY(-5px);
+}
+
+/* Highlights section */
+#highlights {
+    background: var(--primary-dark) !important;
+    padding: 100px 0;
+}
+
+.highlight {
+    background: rgba(181, 65, 250, 0.05) !important;
+    border: 1px solid rgba(181, 65, 250, 0.2);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.highlight:hover {
+    background: rgba(181, 65, 250, 0.1) !important;
+    border-color: var(--accent-purple);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(181, 65, 250, 0.3);
+}
+
+.highlight h3 a {
+    color: white !important;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.highlight p {
+    color: var(--text-secondary) !important;
+}
+
+/* Footer */
+#footer {
+    background: var(--secondary-dark) !important;
+    border-top: 1px solid rgba(181, 65, 250, 0.2);
+    padding: 80px 0 40px;
+}
+
+#footer .title {
+    background: transparent !important;
+    color: var(--accent-purple) !important;
+    margin-bottom: 40px;
+}
+
+#footer h2 {
+    color: white !important;
+    font-size: 36px !important;
+    margin-bottom: 20px;
+}
+
+#footer p {
+    color: var(--text-secondary) !important;
+}
+
+#footer input[type="text"],
+#footer input[type="email"],
+#footer textarea,
+#footer select {
+    background: rgba(181, 65, 250, 0.1) !important;
+    border: 1px solid rgba(181, 65, 250, 0.3) !important;
+    color: white !important;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+#footer input[type="text"]:focus,
+#footer input[type="email"]:focus,
+#footer textarea:focus,
+#footer select:focus {
+    background: rgba(181, 65, 250, 0.15) !important;
+    border-color: var(--accent-purple) !important;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(181, 65, 250, 0.2);
+}
+
+#footer ::placeholder {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+#footer .icon {
+    color: var(--accent-purple) !important;
+}
+
+#footer a {
+    color: var(--accent-cyan) !important;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+#footer a:hover {
+    color: white !important;
+}
+
+/* Copyright */
+#copyright {
+    background: rgba(0, 0, 0, 0.3) !important;
+    padding: 30px;
+    margin-top: 60px;
+}
+
+#copyright ul li {
+    color: var(--text-secondary) !important;
+}
+
+/* Wrapper styles */
+.wrapper {
+    background: transparent !important;
+}
+
+.wrapper.style1 {
+    background: transparent !important;
+}
+
+.wrapper.style2 {
+    background: var(--secondary-dark) !important;
+}
+
+.wrapper.style3 {
+    background: var(--primary-dark) !important;
+}
+
+/* Body background */
+body {
+    background: var(--secondary-dark) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Links generales */
+a {
+    color: var(--accent-purple);
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: var(--accent-cyan);
+}
+
+/* Floating orbs animation */
+@keyframes float-orb {
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+    25% {
+        transform: translate(30px, -20px);
+    }
+    50% {
+        transform: translate(-20px, -40px);
+    }
+    75% {
+        transform: translate(-40px, 20px);
+    }
+}
+
+/* Añadir orbes flotantes */
+body::before {
+    content: '';
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, var(--accent-purple), transparent);
+    border-radius: 50%;
+    top: 20%;
+    left: 10%;
+    opacity: 0.3;
+    animation: float-orb 20s infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, var(--accent-cyan), transparent);
+    border-radius: 50%;
+    bottom: 30%;
+    right: 15%;
+    opacity: 0.2;
+    animation: float-orb 25s infinite reverse;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Dropdown menus */
+#nav ul li ul {
+    background: rgba(181, 65, 250, 0.95) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(181, 65, 250, 0.8);
+    border-radius: 15px;
+    margin-top: 10px;
+}
+
+#nav ul li ul li a {
+    color: rgba(255, 255, 255, 0.8) !important;
+    padding: 10px 20px !important;
+}
+
+#nav ul li ul li a:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #nav {
+        position: relative;
+        top: 0;
+        left: 0;
+        right: 0;
+        border-radius: 0;
+        margin: 0;
+    }
+    
+    #logo h1 {
+        font-size: 36px !important;
+        margin: 40px 0 10px;
+    }
+}

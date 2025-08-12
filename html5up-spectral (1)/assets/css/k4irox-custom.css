@@ -1,0 +1,331 @@
+/* K4iRox Custom Styles */
+/* Aplicar fuente Montserrat a todo el sitio */
+body, input, select, textarea {
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 600;
+}
+
+/* Colores corporativos K4iRox */
+:root {
+    --k4irox-primary: #2E3192; /* Azul corporativo */
+    --k4irox-secondary: #6B46C1; /* Morado tecnológico */
+    --k4irox-accent: #00D4FF; /* Azul claro acento */
+    --k4irox-dark: #1a1a2e;
+    --k4irox-light: #f5f5f5;
+    --k4irox-success: #00C896;
+    --k4irox-warning: #FFB800;
+    --k4irox-danger: #FF3838;
+}
+
+/* Header personalizado */
+#header {
+    background: rgba(46, 49, 146, 0.95);
+}
+
+#header.alt {
+    background: transparent;
+}
+
+#header h1 a {
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+/* Banner hero con gradiente */
+#banner {
+    background-image: linear-gradient(45deg, var(--k4irox-primary) 0%, var(--k4irox-secondary) 100%);
+    position: relative;
+}
+
+#banner h2 {
+    font-style: italic;
+}
+
+#banner:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.3);
+    z-index: 1;
+}
+
+#banner .inner {
+    position: relative;
+    z-index: 2;
+}
+
+#banner h2 {
+    font-style: italic !important;
+    font-weight: 300;
+    font-size: 3em;
+    line-height: 1.3;
+    margin-bottom: 0.5em;
+}
+
+/* Botones personalizados */
+.button.primary {
+    background-color: var(--k4irox-accent);
+    border-color: var(--k4irox-accent);
+    color: #1a1a2e !important;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.button.primary:hover {
+    background-color: #00b4e6;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,212,255,0.3);
+}
+
+.button {
+    border-radius: 50px;
+    padding: 0.75em 2em;
+}
+
+/* Sección de fundamentos - grid mejorado */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2em;
+    margin-top: 3em;
+}
+
+.feature-item {
+    text-align: center;
+    padding: 2em;
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+}
+
+.feature-item .icon {
+    font-size: 3em;
+    margin-bottom: 0.5em;
+    display: block;
+}
+
+.feature-item h3 {
+    color: var(--k4irox-primary);
+    margin-bottom: 0.5em;
+}
+
+/* Estilos para iconos con colores diferentes */
+.major.style1 { color: var(--k4irox-accent) !important; }
+.major.style2 { color: var(--k4irox-success) !important; }
+.major.style3 { color: var(--k4irox-secondary) !important; }
+.major.style4 { color: var(--k4irox-warning) !important; }
+
+/* Spotlights de servicios */
+.spotlight .content h2 {
+    color: var(--k4irox-primary);
+    font-size: 2.5em;
+}
+
+.spotlight .content h3 {
+    color: var(--k4irox-secondary);
+    font-size: 1.5em;
+    margin-bottom: 1em;
+}
+
+/* Testimonios */
+.testimonials {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2em;
+    margin: 3em 0;
+}
+
+.testimonial {
+    background: rgba(255,255,255,0.1);
+    padding: 2em;
+    border-radius: 10px;
+    border-left: 4px solid var(--k4irox-accent);
+}
+
+.testimonial blockquote {
+    margin: 0;
+    font-style: italic;
+}
+
+.testimonial cite {
+    display: block;
+    margin-top: 1em;
+    color: var(--k4irox-secondary);
+    font-weight: 600;
+}
+
+/* Tabla comparativa */
+.comparison-section {
+    padding: 3em 0;
+}
+
+.comparison-section h3 {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 1.5em;
+    color: var(--k4irox-primary);
+}
+
+.table-wrapper table {
+    background: rgba(255,255,255,0.95);
+}
+
+.table-wrapper th {
+    background-color: var(--k4irox-primary);
+    color: white;
+    font-weight: 600;
+}
+
+.table-wrapper td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Sección BMAD */
+#bmad {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.bmad-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2em;
+    margin-top: 3em;
+}
+
+.bmad-item {
+    text-align: center;
+    color: white;
+}
+
+.bmad-item .icon {
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+    display: block;
+}
+
+/* Footer mejorado */
+#footer {
+    background-color: var(--k4irox-dark);
+    padding: 4em 0 2em;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3em;
+    margin-bottom: 3em;
+    padding: 0 2em;
+}
+
+.footer-content h3 {
+    color: var(--k4irox-accent);
+    margin-bottom: 1em;
+}
+
+.cert-list {
+    list-style: none;
+    padding: 0;
+}
+
+.cert-list li {
+    margin-bottom: 0.5em;
+    color: #ccc;
+}
+
+.legal-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.legal-links a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.legal-links a:hover {
+    color: var(--k4irox-accent);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2em;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-bottom .copyright {
+    color: #999;
+}
+
+/* CTA Section */
+#cta {
+    background: linear-gradient(45deg, var(--k4irox-primary), var(--k4irox-secondary));
+}
+
+#cta h2 {
+    color: white;
+}
+
+#cta p {
+    color: rgba(255,255,255,0.9);
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 736px) {
+    #banner h2 {
+        font-size: 2em;
+    }
+    
+    .features-grid,
+    .testimonials,
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .comparison-section {
+        overflow-x: auto;
+    }
+}
+
+/* Animaciones suaves */
+* {
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Mejoras de accesibilidad */
+a:focus,
+button:focus {
+    outline: 2px solid var(--k4irox-accent);
+    outline-offset: 2px;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--k4irox-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--k4irox-secondary);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--k4irox-accent);
+}

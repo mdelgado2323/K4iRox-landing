@@ -1,0 +1,2041 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K4iRox - Tu Servidor de IA Privado</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1a0f2e 0%, #2d1b69 100%);
+            margin: 5% auto;
+            padding: 48px;
+            border: 2px solid rgba(181, 65, 250, 0.3);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: #b541fa;
+        }
+
+        .modal h2 {
+            color: #b541fa;
+            margin-bottom: 24px;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ffffff;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #b541fa;
+            box-shadow: 0 0 15px rgba(181, 65, 250, 0.3);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .modal .cta-button {
+            width: 100%;
+            margin-top: 16px;
+            font-size: 18px;
+            padding: 16px;
+        }
+
+        .success-message {
+            background: rgba(34, 197, 94, 0.1);
+            border: 2px solid rgba(34, 197, 94, 0.3);
+            color: #22c55e;
+            padding: 16px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        /* Responsive */
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #1f164f 50%, #2a1a5e 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(31, 22, 79, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(181, 65, 250, 0.2);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 32px 0;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            position: relative;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        .logo .k4 {
+            color: #76f6f5;
+        }
+
+        .logo .i-dot {
+            color: #76f6f5;
+            position: relative;
+        }
+
+        /* Punto especial de la "i" que será el elemento unificador de la marca */
+        .logo .i-dot {
+            position: relative;
+        }
+
+        .logo .i-dot::after {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            width: 4px;
+            height: 4px;
+            background: #b541fa;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            animation: brand-dot-glow 3s ease-in-out infinite;
+            box-shadow: 0 0 6px rgba(181, 65, 250, 0.6);
+        }
+
+        .logo .rox {
+            color: #b541fa;
+            transition: all 0.3s ease;
+        }
+
+        /* Animación del punto de la marca */
+        @keyframes brand-dot-glow {
+            0%, 100% { 
+                opacity: 0.8;
+                transform: translateX(-50%) scale(1);
+                box-shadow: 0 0 8px rgba(181, 65, 250, 0.6);
+            }
+            50% { 
+                opacity: 1;
+                transform: translateX(-50%) scale(1.3);
+                box-shadow: 0 0 15px rgba(181, 65, 250, 0.9), 0 0 25px rgba(181, 65, 250, 0.4);
+            }
+        }
+
+        /* Hover effects */
+        .logo:hover .k4,
+        .logo:hover .i-dot {
+            text-shadow: 0 4px 15px rgba(118, 246, 245, 0.4);
+        }
+
+        .logo:hover .rox {
+            text-shadow: 0 4px 15px rgba(181, 65, 250, 0.4);
+        }
+
+        .logo:hover .i-dot::after {
+            transform: translateX(-50%) scale(1.5);
+            box-shadow: 0 0 20px rgba(181, 65, 250, 1), 0 0 35px rgba(181, 65, 250, 0.6);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 16px;
+        }
+
+        .nav-links a:hover {
+            color: #76f6f5;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #b541fa, #76f6f5);
+            color: #1f164f;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(118, 246, 245, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(181, 65, 250, 0.15) 0%, rgba(118, 246, 245, 0.1) 30%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .hero-text .highlight {
+            background: linear-gradient(45deg, #b541fa, #76f6f5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text p {
+            font-size: 20px;
+            margin-bottom: 32px;
+            color: #f0f0f0;
+            line-height: 1.6;
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .k4irox-atom {
+            position: relative;
+            width: 300px;
+            height: 300px;
+        }
+
+        .atom-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #b541fa, #76f6f5);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            box-shadow: 0 10px 30px rgba(118, 246, 245, 0.4);
+        }
+
+        .atom-center::before {
+            content: '4';
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #1f164f;
+        }
+
+        .orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border: 2px solid #76f6f5;
+            border-radius: 50%;
+            transform-origin: center;
+        }
+
+        .orbit-1 {
+            width: 200px;
+            height: 100px;
+            margin-left: -100px;
+            margin-top: -50px;
+            animation: rotate 4s linear infinite;
+        }
+
+        .orbit-2 {
+            width: 200px;
+            height: 100px;
+            margin-left: -100px;
+            margin-top: -50px;
+            transform: rotate(60deg);
+            animation: rotate 3s linear infinite reverse;
+        }
+
+        .orbit-3 {
+            width: 200px;
+            height: 100px;
+            margin-left: -100px;
+            margin-top: -50px;
+            transform: rotate(120deg);
+            animation: rotate 5s linear infinite;
+        }
+
+        .electron {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #b541fa;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #76f6f5;
+            top: 50%;
+            left: 50%;
+            margin-left: 100px;
+            margin-top: -4px;
+        }
+
+        .electron-1 {
+            animation: orbit-rotate 4s linear infinite;
+        }
+
+        .electron-2 {
+            animation: orbit-rotate-2 3s linear infinite;
+        }
+
+        .electron-3 {
+            animation: orbit-rotate-3 5s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes orbit-rotate {
+            from { transform: rotate(0deg) translateX(-100px) rotate(0deg); }
+            to { transform: rotate(360deg) translateX(-100px) rotate(-360deg); }
+        }
+
+        @keyframes orbit-rotate-2 {
+            from { transform: rotate(60deg) rotate(0deg) translateX(-100px) rotate(0deg); }
+            to { transform: rotate(60deg) rotate(-360deg) translateX(-100px) rotate(360deg); }
+        }
+
+        @keyframes orbit-rotate-3 {
+            from { transform: rotate(120deg) rotate(0deg) translateX(-100px) rotate(0deg); }
+            to { transform: rotate(120deg) rotate(360deg) translateX(-100px) rotate(-360deg); }
+        }
+
+        /* Sistema Multi-Agente Section */
+        .sistema-agente {
+            padding: 96px 0;
+            background: linear-gradient(135deg, rgba(181, 65, 250, 0.05) 0%, rgba(118, 246, 245, 0.05) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sistema-agente::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(181, 65, 250, 0.1) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+
+        .sistema-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sistema-text h2 {
+            font-size: 40px;
+            margin-bottom: 24px;
+            font-weight: 700;
+            background: linear-gradient(45deg, #b541fa, #76f6f5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .sistema-text p {
+            font-size: 18px;
+            color: #f0f0f0;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .sistema-visual {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .agent-diagram {
+            position: relative;
+            width: 400px;
+            height: 400px;
+        }
+
+        .agent-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #1a0f2e 0%, #2d1b69 100%);
+            border: 3px solid #b541fa;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            box-shadow: 0 20px 40px rgba(181, 65, 250, 0.3);
+        }
+
+        .agent-center span {
+            font-size: 20px;
+            font-weight: 700;
+            color: #b541fa;
+        }
+
+        .agent-node {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid #76f6f5;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .agent-node:hover {
+            transform: scale(1.1);
+            background: rgba(118, 246, 245, 0.1);
+            box-shadow: 0 10px 30px rgba(118, 246, 245, 0.3);
+        }
+
+        .agent-node.lucia {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-color: #22c55e;
+        }
+
+        .agent-node.lucia:hover {
+            background: rgba(34, 197, 94, 0.1);
+            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3);
+        }
+
+        .agent-node.k4irox {
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-color: #b541fa;
+        }
+
+        .agent-node.k4irox:hover {
+            background: rgba(181, 65, 250, 0.1);
+            box-shadow: 0 10px 30px rgba(181, 65, 250, 0.3);
+        }
+
+        .agent-node .icon {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .agent-node .label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1f164f;
+        }
+
+        .agent-connection {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 2px;
+            height: 200px;
+            background: linear-gradient(180deg, #22c55e 0%, #b541fa 50%, #76f6f5 100%);
+            opacity: 0.5;
+            animation: pulse-connection 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-connection {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        .ecosystem-badges {
+            display: flex;
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .badge:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .badge .icon {
+            color: #76f6f5;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 96px 0;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .features .subtitle {
+            text-align: center;
+            font-size: 20px;
+            color: #f0f0f0;
+            margin-bottom: 48px;
+        }
+
+        .features .ecosystem-note {
+            text-align: center;
+            background: rgba(181, 65, 250, 0.1);
+            border: 1px solid rgba(181, 65, 250, 0.3);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 48px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 16px;
+        }
+
+        .features .ecosystem-note .highlight {
+            color: #b541fa;
+            font-weight: 600;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(118, 246, 245, 0.2);
+        }
+
+        /* Elementos del sistema visual - inspirados en el logo real */
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 24px;
+            background: linear-gradient(45deg, #b541fa, #76f6f5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            position: relative;
+        }
+
+        /* Órbita inspirada en el logo para los iconos */
+        .feature-icon::after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            border: 2px solid #76f6f5;
+            border-radius: 50%;
+            opacity: 0;
+            animation: icon-orbit 4s ease-in-out infinite;
+        }
+
+        @keyframes icon-orbit {
+            0%, 70% { 
+                opacity: 0;
+                transform: scale(1);
+            }
+            75%, 95% { 
+                opacity: 0.6;
+                transform: scale(1.1);
+            }
+            100% { 
+                opacity: 0;
+                transform: scale(1);
+            }
+        }
+
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            color: #b541fa;
+        }
+
+        .feature-card p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #f0f0f0;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 96px 0;
+        }
+
+        .pricing h2 {
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 48px;
+            font-weight: 700;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 40px;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(118, 246, 245, 0.2);
+        }
+
+        .pricing-card.popular {
+            border: 2px solid #b541fa;
+            transform: scale(1.05);
+        }
+
+        .pricing-card.popular::before {
+            content: 'MÁS POPULAR';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #b541fa, #76f6f5);
+            color: #1f164f;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .pricing-card h3 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            color: #b541fa;
+            text-align: center;
+        }
+
+        .price {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .price span {
+            font-size: 16px;
+            color: #f0f0f0;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 32px 0;
+            text-align: left;
+            flex-grow: 1;
+        }
+
+        .features-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(181, 65, 250, 0.2);
+            font-size: 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            color: #22c55e;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .features-list li.not-included {
+            opacity: 0.5;
+            text-decoration: line-through;
+        }
+
+        .features-list li.not-included::before {
+            content: '✗';
+            color: #ef4444;
+        }
+
+        .features-list li.highlight {
+            font-weight: 600;
+            color: #b541fa;
+        }
+
+        .features-list li.highlight::before {
+            color: #b541fa;
+        }
+
+        .plan-limit {
+            background: rgba(181, 65, 250, 0.1);
+            border: 1px solid rgba(236, 72, 153, 0.3);
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 16px;
+            color: #b541fa;
+        }
+
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-card .cta-button {
+            margin-top: auto;
+            width: 100%;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 96px 0;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .faq h2 {
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 48px;
+            font-weight: 700;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(168, 85, 247, 0.3);
+            box-shadow: 0 5px 20px rgba(181, 65, 250, 0.1);
+        }
+
+        .faq-question {
+            padding: 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 18px;
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: #b541fa;
+        }
+
+        .faq-icon {
+            font-size: 20px;
+            color: #76f6f5;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .faq-answer.active {
+            max-height: 500px;
+        }
+
+        .faq-answer-content {
+            padding: 0 24px 24px;
+            color: #f0f0f0;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .faq-answer-content ul {
+            margin: 16px 0;
+            padding-left: 24px;
+        }
+
+        .faq-answer-content li {
+            margin-bottom: 8px;
+            color: #d0d0d0;
+        }
+
+        .faq-highlight {
+            color: #b541fa;
+            font-weight: 600;
+        }
+
+        /* FAQ Show More */
+        .faq-hidden {
+            display: none;
+        }
+
+        .faq-show-more {
+            text-align: center;
+            margin-top: 32px;
+        }
+
+        .show-more-btn {
+            background: transparent;
+            border: 2px solid #b541fa;
+            color: #b541fa;
+            padding: 12px 32px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .show-more-btn:hover {
+            background: #b541fa;
+            color: #1f164f;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(181, 65, 250, 0.3);
+        }
+
+        .show-more-btn .arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .show-more-btn.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        .faq-container.expanded .faq-hidden {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 48px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .footer-section h4 {
+            color: #b541fa;
+            margin-bottom: 16px;
+            font-size: 18px;
+        }
+
+        .footer-section a {
+            color: #f0f0f0;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .footer-section a:hover {
+            color: #b541fa;
+        }
+
+        /* Responsive - Mobile First Approach */
+        
+        /* Mobile Phones (320px - 480px) */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+            
+            nav {
+                padding: 16px 0;
+            }
+            
+            .logo {
+                font-size: 24px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .cta-button {
+                padding: 10px 16px;
+                font-size: 14px;
+            }
+            
+            .hero {
+                padding-top: 80px;
+            }
+            
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 32px;
+                text-align: center;
+            }
+            
+            .hero-text h1 {
+                font-size: 32px;
+            }
+            
+            .hero-text p {
+                font-size: 16px;
+            }
+            
+            .hero-visual {
+                display: none;
+            }
+            
+            .sistema-agente {
+                padding: 48px 0;
+            }
+            
+            .sistema-content {
+                grid-template-columns: 1fr;
+                gap: 32px;
+                text-align: center;
+            }
+            
+            .sistema-text h2 {
+                font-size: 28px;
+            }
+            
+            .sistema-text p {
+                font-size: 16px;
+            }
+            
+            .agent-diagram {
+                transform: scale(0.7);
+                width: 300px;
+                height: 300px;
+            }
+            
+            .agent-node {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .agent-node .icon {
+                font-size: 24px;
+            }
+            
+            .agent-node .label {
+                font-size: 12px;
+            }
+            
+            .agent-center {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .agent-center span {
+                font-size: 16px;
+            }
+            
+            .ecosystem-badges {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .badge {
+                font-size: 12px;
+                padding: 8px 16px;
+            }
+            
+            .features {
+                padding: 48px 0;
+            }
+            
+            .features h2 {
+                font-size: 28px;
+            }
+            
+            .features .subtitle {
+                font-size: 16px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            
+            .feature-card {
+                padding: 24px;
+            }
+            
+            .pricing {
+                padding: 48px 0;
+            }
+            
+            .pricing h2 {
+                font-size: 28px;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 16px;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .pricing-card {
+                padding: 20px;
+                min-width: 280px;
+                height: auto;
+            }
+            
+            .pricing-card.popular {
+                transform: none;
+            }
+            
+            .pricing-card h3 {
+                font-size: 20px;
+            }
+            
+            .price {
+                font-size: 32px;
+            }
+            
+            .features-list {
+                margin: 16px 0;
+            }
+            
+            .features-list li {
+                font-size: 14px;
+                padding: 8px 0;
+            }
+            
+            .features-list li::before {
+                font-size: 14px;
+            }
+            
+            .pricing-card .cta-button {
+                font-size: 14px;
+                padding: 12px;
+                margin-top: auto;
+            }
+            
+            .faq {
+                padding: 48px 0;
+            }
+            
+            .faq h2 {
+                font-size: 28px;
+            }
+            
+            .faq-question {
+                font-size: 16px;
+                padding: 16px;
+            }
+            
+            .modal-content {
+                width: 95%;
+                padding: 24px;
+                margin: 10% auto;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: left;
+            }
+        }
+        
+        /* Tablets (481px - 768px) */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .container {
+                padding: 0 24px;
+            }
+            
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 48px;
+                text-align: center;
+            }
+            
+            .hero-text h1 {
+                font-size: 40px;
+            }
+            
+            .hero-text p {
+                font-size: 18px;
+            }
+            
+            .hero-visual {
+                height: 400px;
+            }
+            
+            .k4irox-atom {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .features h2 {
+                font-size: 32px;
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .pricing h2 {
+                font-size: 32px;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+            
+            .pricing-card {
+                padding: 30px;
+                height: auto;
+            }
+            
+            .pricing-card h3 {
+                font-size: 22px;
+            }
+            
+            .price {
+                font-size: 40px;
+            }
+            
+            .features-list li {
+                font-size: 15px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .faq h2 {
+                font-size: 32px;
+            }
+            
+            .modal-content {
+                width: 90%;
+                padding: 32px;
+            }
+        }
+        
+        /* Small Desktops (769px - 1024px) */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .container {
+                max-width: 960px;
+            }
+            
+            .hero-text h1 {
+                font-size: 48px;
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .pricing-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 24px;
+            }
+        }
+        
+        /* Large Desktops (1025px+) */
+        @media (min-width: 1025px) {
+            .container {
+                max-width: 1400px;
+                padding: 0 60px;
+            }
+            
+            .hero-content {
+                gap: 80px;
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        /* Ultra Wide Screens (1441px+) */
+        @media (min-width: 1441px) {
+            .container {
+                max-width: 1600px;
+                padding: 0 80px;
+            }
+            
+            .hero-text h1 {
+                font-size: 64px;
+            }
+            
+            .hero-text p {
+                font-size: 24px;
+            }
+            
+            .features h2 {
+                font-size: 48px;
+            }
+            
+            .pricing h2 {
+                font-size: 48px;
+            }
+            
+            .faq h2 {
+                font-size: 48px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <div class="logo-symbol"></div>
+                <span>K4iRox</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#características">Características</a></li>
+                <li><a href="#precios">Precios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <a href="#precios" class="cta-button">Comenzar</a>
+            <button class="mobile-menu-toggle" aria-label="Menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <section class="hero" id="inicio">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>K4iRox: <span class="highlight">Automatización Inteligente</span> para Administradores</h1>
+                    <p>Parte del ecosistema SecretIA. K4iRox optimiza el momento exacto para cada acción, automatizando el 40% de las tareas administrativas con máxima seguridad.</p>
+                    <a href="#precios" class="cta-button">Automatizar Tareas</a>
+                </div>
+                <div class="hero-visual">
+                    <div class="neural-network">
+                    <div class="network-node"></div>
+                    <div class="network-node"></div>
+                    <div class="network-node"></div>
+                    <div class="network-node"></div>
+                    <div class="network-node"></div>
+                    <div class="network-connection connection-1"></div>
+                    <div class="network-connection connection-2"></div>
+                    <div class="network-connection connection-3"></div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sistema Multi-Agente Section -->
+    <section class="sistema-agente" id="sistema">
+        <div class="container">
+            <div class="sistema-content">
+                <div class="sistema-text">
+                    <h2>Sistema Multi-Agente Protegido (MAP)</h2>
+                    <p>K4iRox trabaja en conjunto con LucIA para ofrecerte la máxima seguridad y eficiencia. Mientras LucIA interactúa con el público, K4iRox procesa y automatiza las tareas críticas desde un núcleo completamente protegido.</p>
+                    
+                    <div class="ecosystem-badges">
+                        <div class="badge">
+                            <span class="icon">🔒</span>
+                            <span>Núcleo Aislado</span>
+                        </div>
+                        <div class="badge">
+                            <span class="icon">⚡</span>
+                            <span>Procesamiento Seguro</span>
+                        </div>
+                        <div class="badge">
+                            <span class="icon">🤖</span>
+                            <span>IA Colaborativa</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sistema-visual">
+                    <div class="agent-diagram">
+                        <div class="agent-connection"></div>
+                        
+                        <div class="agent-node lucia">
+                            <div class="icon">👥</div>
+                            <div class="label">LucIA</div>
+                        </div>
+                        
+                        <div class="agent-center">
+                            <span>SecretIA</span>
+                        </div>
+                        
+                        <div class="agent-node k4irox">
+                            <div class="icon">🔐</div>
+                            <div class="label">K4iRox</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="características">
+        <div class="container">
+            <h2>Características Principales</h2>
+            <p class="subtitle">Automatización inteligente diseñada para administradores de fincas</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <h3>Envío de Documentación</h3>
+                    <p>Automatiza el envío de actas, reportes de deuda y documentación oficial en el momento exacto.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Gestión de Incidencias</h3>
+                    <p>Seguimiento y resolución proactiva de problemas con clasificación automática y asignación inteligente.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Coordinación con Proveedores</h3>
+                    <p>Integración con gremios para gestión automática de servicios y mantenimiento de fincas.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Núcleo Protegido</h3>
+                    <p>K4iRox nunca está expuesto al exterior. Accede solo a datos sensibles que LucIA le autoriza procesar.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>Integración con Sistemas</h3>
+                    <p>Conexión directa con Gesfincas, Netfincas y otros sistemas de administración de fincas.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Precisión del 95%</h3>
+                    <p>Fine-tuning especializado para administradores de fincas con matching perfecto de comunidades.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="precios">
+        <div class="container">
+            <h2>Planes Diseñados para Ti</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Básico</h3>
+                    <div class="price">€29<span>/mes</span></div>
+                    <div class="plan-limit">🔍 1,000 automatizaciones/mes</div>
+                    <ul class="features-list">
+                        <li>Acceso a LucIA + K4iRox</li>
+                        <li>Integración básica con sistemas</li>
+                        <li>Documentación automática</li>
+                        <li>Soporte por email (24h)</li>
+                        <li>Panel de control básico</li>
+                    </ul>
+                    <button class="cta-button" onclick="openPricingModal('basic')">Comenzar</button>
+                </div>
+                <div class="pricing-card popular">
+                    <h3>Profesional</h3>
+                    <div class="price">€79<span>/mes</span></div>
+                    <div class="plan-limit" style="background: rgba(181, 65, 250, 0.1); border-color: rgba(181, 65, 250, 0.3); color: #b541fa;">✨ 10,000 automatizaciones/mes</div>
+                    <ul class="features-list">
+                        <li class="highlight">Todo lo del plan Básico</li>
+                        <li class="highlight">Integración completa Gesfincas</li>
+                        <li class="highlight">Gestión de incidencias</li>
+                        <li class="highlight">Coordinación con proveedores</li>
+                        <li class="highlight">Fine-tuning personalizado</li>
+                        <li class="highlight">Soporte prioritario (4h)</li>
+                    </ul>
+                    <button class="cta-button" onclick="openPricingModal('professional')">Comenzar</button>
+                </div>
+                <div class="pricing-card">
+                    <h3>Empresarial</h3>
+                    <div class="price">€199<span>/mes</span></div>
+                    <div class="plan-limit" style="background: rgba(34, 197, 94, 0.1); border-color: rgba(34, 197, 94, 0.3); color: #22c55e;">♾️ Automatización ilimitada</div>
+                    <ul class="features-list">
+                        <li class="highlight">Todo lo del plan Profesional</li>
+                        <li class="highlight">Servidor exclusivo</li>
+                        <li class="highlight">Atención multicanal 24/7</li>
+                        <li class="highlight">Gestor de cuenta dedicado</li>
+                        <li class="highlight">SLA garantizado 99.9%</li>
+                        <li class="highlight">Integración total con gremios</li>
+                    </ul>
+                    <button class="cta-button" onclick="openContactModal()">Contactar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <h2>Preguntas Frecuentes</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Realmente no almacenan mis datos?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <span class="faq-highlight">Garantía absoluta de privacidad.</span> Tu información se procesa en tiempo real y se elimina inmediatamente después de cada sesión. No mantenemos registros, no creamos perfiles de usuario, y no vendemos datos a terceros. Nuestro sistema está diseñado para ser completamente <span class="faq-highlight">amnésico</span> - cada conversación es independiente y privada.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Qué diferencia a K4iRox de ChatGPT o Claude?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            La diferencia principal es la <span class="faq-highlight">privacidad total</span>. Mientras que otras plataformas pueden almacenar conversaciones para mejorar sus modelos, nosotros:
+                            <ul>
+                                <li>Procesamos todo en <span class="faq-highlight">tu propio servidor dedicado</span></li>
+                                <li>Eliminamos datos inmediatamente después del procesamiento</li>
+                                <li>No utilizamos tus datos para entrenar modelos</li>
+                                <li>Cumplimos con las regulaciones más estrictas de privacidad</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Preguntas visibles inicialmente -->
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Realmente no almacenan mis datos?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <span class="faq-highlight">Garantía absoluta de privacidad.</span> Tu información se procesa en tiempo real y se elimina inmediatamente después de cada sesión. No mantenemos registros, no creamos perfiles de usuario, y no vendemos datos a terceros. Nuestro sistema está diseñado para ser completamente <span class="faq-highlight">amnésico</span> - cada conversación es independiente y privada.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Qué diferencia a K4iRox de ChatGPT o Claude?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            La diferencia principal es la <span class="faq-highlight">privacidad total</span>. Mientras que otras plataformas pueden almacenar conversaciones para mejorar sus modelos, nosotros:
+                            <ul>
+                                <li>Procesamos todo en <span class="faq-highlight">tu propio servidor dedicado</span></li>
+                                <li>Eliminamos datos inmediatamente después del procesamiento</li>
+                                <li>No utilizamos tus datos para entrenar modelos</li>
+                                <li>Cumplimos con las regulaciones más estrictas de privacidad</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Cómo funciona el sistema de consultas?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Cada plan incluye un número específico de consultas mensuales:
+                            <ul>
+                                <li><span class="faq-highlight">Básico:</span> 1,000 consultas/mes (≈33 por día)</li>
+                                <li><span class="faq-highlight">Profesional:</span> 10,000 consultas/mes (≈333 por día)</li>
+                                <li><span class="faq-highlight">Empresarial:</span> Ilimitadas con servidor dedicado</li>
+                            </ul>
+                            Las consultas no utilizadas no se acumulan para el mes siguiente, pero puedes actualizar tu plan en cualquier momento.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Preguntas ocultas inicialmente -->
+                <div class="faq-hidden">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>¿Puedo usar K4iRox para mi empresa?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <span class="faq-highlight">¡Absolutamente!</span> K4iRox está diseñado especialmente para empresas que valoran la privacidad. Nuestro plan empresarial incluye:
+                                <ul>
+                                    <li>Servidor dedicado para tu organización</li>
+                                    <li>Integraciones personalizadas con tus sistemas</li>
+                                    <li>Soporte técnico 24/7</li>
+                                    <li>Gestor de cuenta dedicado</li>
+                                    <li>Cumplimiento con regulaciones corporativas</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>¿Qué pasa si necesito más consultas?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Tienes varias opciones flexibles:
+                                <ul>
+                                    <li><span class="faq-highlight">Upgrade automático:</span> Actualiza tu plan en cualquier momento</li>
+                                    <li><span class="faq-highlight">Paquetes adicionales:</span> Compra bloques de consultas extra</li>
+                                    <li><span class="faq-highlight">Plan empresarial:</span> Consultas ilimitadas con servidor dedicado</li>
+                                </ul>
+                                Te notificaremos cuando estés cerca de tu límite mensual para que puedas tomar la mejor decisión.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>¿Cómo garantizan la seguridad?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Implementamos múltiples capas de seguridad:
+                                <ul>
+                                    <li><span class="faq-highlight">Cifrado end-to-end:</span> Tus datos viajan encriptados</li>
+                                    <li><span class="faq-highlight">Servidores seguros:</span> Infraestructura con certificaciones SOC2</li>
+                                    <li><span class="faq-highlight">Auditorías regulares:</span> Revisiones de seguridad mensuales</li>
+                                    <li><span class="faq-highlight">Cumplimiento GDPR:</span> Respetamos todas las regulaciones</li>
+                                    <li><span class="faq-highlight">Acceso zero-knowledge:</span> Ni nosotros podemos ver tus datos</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>¿Puedo cancelar mi suscripción en cualquier momento?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <span class="faq-highlight">Sí, sin compromisos.</span> Puedes cancelar tu suscripción en cualquier momento desde tu panel de control. No hay penalizaciones ni cargos ocultos. Tu servicio continuará hasta el final del período facturado actual, y no se procesarán más cobros. Incluso después de cancelar, mantenemos tu configuración por 30 días por si decides regresar.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>¿Qué soporte técnico ofrecen?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Nuestro soporte varía según el plan:
+                                <ul>
+                                    <li><span class="faq-highlight">Plan Básico:</span> Soporte por email (respuesta en 24h)</li>
+                                    <li><span class="faq-highlight">Plan Profesional:</span> Soporte prioritario (respuesta en 4h)</li>
+                                    <li><span class="faq-highlight">Plan Empresarial:</span> Soporte 24/7 con gestor dedicado</li>
+                                </ul>
+                                Además, todos los planes incluyen documentación completa, tutoriales en video y acceso a nuestra comunidad de usuarios.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botón Ver Más -->
+                <div class="faq-show-more">
+                    <button class="show-more-btn" onclick="toggleMoreFAQ()">
+                        <span>Ver más preguntas</span>
+                        <span class="arrow">▼</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contacto">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>K4iRox</h4>
+                    <p>Inteligencia Artificial para automatización de tareas. Optimiza el momento exacto para cada acción.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Producto</h4>
+                    <a href="#características">Características</a>
+                    <a href="#precios">Precios</a>
+                    <a href="#">Documentación</a>
+                    <a href="#">API</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Soporte</h4>
+                    <a href="#">Centro de Ayuda</a>
+                    <a href="#">Contacto</a>
+                    <a href="#">Estado del Servicio</a>
+                    <a href="#">Términos de Uso</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Desarrollado por</h4>
+                    <p>SecretIA - Ecosistema completo de<br>secretaria virtual con IA<br>para administradores de fincas</p>
+                </div>
+            </div>
+            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 32px; color: #666; text-align: left;">
+                <p>&copy; 2025 K4iRox. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Contacto -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('contactModal')">&times;</span>
+            <h2>Contactar - Plan Empresarial</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="company">Nombre de la Empresa</label>
+                    <input type="text" id="company" name="company" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactName">Nombre de Contacto</label>
+                    <input type="text" id="contactName" name="contactName" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Corporativo</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Teléfono</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="employees">Número de Empleados</label>
+                    <select id="employees" name="employees" required>
+                        <option value="">Seleccionar...</option>
+                        <option value="1-10">1-10 empleados</option>
+                        <option value="11-50">11-50 empleados</option>
+                        <option value="51-200">51-200 empleados</option>
+                        <option value="201-1000">201-1000 empleados</option>
+                        <option value="1000+">Más de 1000 empleados</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Cuéntanos sobre tus necesidades</label>
+                    <textarea id="message" name="message" placeholder="Describe qué tipo de solución de IA necesitas y cuáles son tus objetivos..." required></textarea>
+                </div>
+                <button type="submit" class="cta-button">Enviar Solicitud</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Planes -->
+    <div id="pricingModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('pricingModal')">&times;</span>
+            <h2 id="planTitle">Comenzar con K4iRox</h2>
+            <form id="pricingForm">
+                <div class="form-group">
+                    <label for="fullName">Nombre Completo</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="userEmail">Email</label>
+                    <input type="email" id="userEmail" name="userEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="businessType">Tipo de Negocio</label>
+                    <select id="businessType" name="businessType" required>
+                        <option value="">Seleccionar...</option>
+                        <option value="startup">Startup</option>
+                        <option value="pyme">Pequeña/Mediana Empresa</option>
+                        <option value="freelancer">Freelancer</option>
+                        <option value="consultoria">Consultoría</option>
+                        <option value="ecommerce">E-commerce</option>
+                        <option value="educacion">Educación</option>
+                        <option value="salud">Salud</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="useCase">¿Para qué usarás K4iRox?</label>
+                    <textarea id="useCase" name="useCase" placeholder="Ej: Atención al cliente, análisis de datos, generación de contenido..." required></textarea>
+                </div>
+                <div id="planDetails" class="success-message" style="display: none;">
+                    <!-- Se llenará dinámicamente -->
+                </div>
+                <button type="submit" class="cta-button">Crear Cuenta</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(10, 10, 10, 0.98)';
+            } else {
+                header.style.background = 'rgba(10, 10, 10, 0.95)';
+            }
+        });
+
+        // Add hover effects to pricing cards
+        document.querySelectorAll('.pricing-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                if (card.classList.contains('popular')) {
+                    card.style.transform = 'translateY(-5px) scale(1.05)';
+                } else {
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Modal functionality
+        function openContactModal() {
+            document.getElementById('contactModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function openPricingModal(plan) {
+            const modal = document.getElementById('pricingModal');
+            const title = document.getElementById('planTitle');
+            const details = document.getElementById('planDetails');
+            
+            const plans = {
+                basic: {
+                    title: 'Plan Básico - €29/mes',
+                    details: '✓ 1,000 consultas/mes<br>✓ Respuestas básicas<br>✓ Soporte por email<br>✓ Seguridad estándar'
+                },
+                professional: {
+                    title: 'Plan Profesional - €79/mes',
+                    details: '✓ 10,000 consultas/mes<br>✓ Respuestas avanzadas<br>✓ Soporte prioritario<br>✓ API personalizada<br>✓ Análisis detallados'
+                }
+            };
+            
+            title.textContent = plans[plan].title;
+            details.innerHTML = plans[plan].details;
+            details.style.display = 'block';
+            
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const contactModal = document.getElementById('contactModal');
+            const pricingModal = document.getElementById('pricingModal');
+            if (event.target === contactModal) {
+                closeModal('contactModal');
+            }
+            if (event.target === pricingModal) {
+                closeModal('pricingModal');
+            }
+        }
+
+        // Form submissions
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulate form submission
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Show success message
+            alert('¡Gracias por tu interés! Nuestro equipo de ventas se pondrá en contacto contigo en las próximas 24 horas.');
+            closeModal('contactModal');
+            this.reset();
+        });
+
+        document.getElementById('pricingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulate account creation
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Show success message
+            alert('¡Cuenta creada exitosamente! Te hemos enviado un email con los detalles de acceso y próximos pasos.');
+            closeModal('pricingModal');
+            this.reset();
+        });
+
+        // FAQ functionality
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            const faqAnswer = faqItem.querySelector('.faq-answer');
+            const faqIcon = element.querySelector('.faq-icon');
+            
+            // Close all other FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== faqItem) {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-answer').classList.remove('active');
+                }
+            });
+            
+            // Toggle current FAQ item
+            faqItem.classList.toggle('active');
+            faqAnswer.classList.toggle('active');
+        }
+
+        // Toggle More FAQ
+        function toggleMoreFAQ() {
+            const faqContainer = document.querySelector('.faq-container');
+            const showMoreBtn = document.querySelector('.show-more-btn');
+            const btnText = showMoreBtn.querySelector('span:first-child');
+            
+            faqContainer.classList.toggle('expanded');
+            showMoreBtn.classList.toggle('active');
+            
+            if (faqContainer.classList.contains('expanded')) {
+                btnText.textContent = 'Ver menos preguntas';
+            } else {
+                btnText.textContent = 'Ver más preguntas';
+                // Smooth scroll to FAQ section top
+                document.querySelector('.faq').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1202 @@
+/* K4iRox Custom Styles for Spectral Template */
+
+:root {
+    /* Colores oficiales de K4iRox */
+    --primary-dark: #1f164f;
+    --secondary-dark: #16113a;
+    --accent-purple: #b541fa;
+    --accent-cyan: #76f6f5;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0a0;
+}
+
+/* Fuente Montserrat */
+body, input, select, textarea {
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 700 !important;
+}
+
+/* Body background */
+body {
+    background: #000000 !important;
+}
+
+/* Prevenir el flash blanco al cargar */
+body.is-preload * {
+    animation: none !important;
+    transition: none !important;
+}
+
+body.is-preload {
+    background: #000000 !important;
+}
+
+body.is-preload #banner {
+    background: #000000 !important;
+}
+
+#page-wrapper {
+    background: #000000 !important;
+}
+
+/* Header - Siempre visible */
+#header {
+    background: rgba(118, 246, 245, 0.15) !important;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(118, 246, 245, 0.3);
+    box-shadow: 0 4px 20px rgba(118, 246, 245, 0.1);
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 10000 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    padding: 1.5rem 3rem;
+    border-radius: 20px;
+    margin: 1.5rem;
+    width: calc(100% - 3rem) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    min-height: 70px !important;
+}
+
+#header.alt {
+    background: rgba(118, 246, 245, 0.15) !important;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(118, 246, 245, 0.3);
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Asegurar que el logo siempre sea visible */
+#header h1 {
+    opacity: 1 !important;
+    visibility: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    margin-left: 1.5rem !important;
+    display: flex !important;
+    align-items: center !important;
+    height: 100% !important;
+}
+
+#header h1 a {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: inline-flex !important;
+    text-decoration: none !important;
+}
+
+#header h1 a span {
+    color: white !important;
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 1.75rem !important;
+    font-weight: 800 !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+}
+
+/* Header cuando se hace scroll */
+#header.scrolled {
+    background: rgba(118, 246, 245, 0.18) !important;
+    box-shadow: 0 4px 20px rgba(118, 246, 245, 0.15);
+}
+
+/* Asegurar que el header siempre sea visible */
+body.is-preload #header {
+    opacity: 1 !important;
+}
+
+body #header {
+    display: flex !important;
+}
+
+#header h1 {
+    margin: 0;
+    padding: 0;
+}
+
+#header h1 a {
+    color: white !important;
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: -0.5px;
+    display: inline-flex;
+    align-items: center;
+}
+
+#header h1 a.logo-link {
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+#header h1 a.logo-link:hover {
+    transform: scale(1.05);
+}
+
+#header h1 svg {
+    height: 35px;
+    width: auto;
+    vertical-align: middle;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+/* Animación del logo */
+@keyframes logoGlow {
+    0% { filter: drop-shadow(0 0 3px rgba(181, 65, 250, 0.5)); }
+    50% { filter: drop-shadow(0 0 8px rgba(118, 246, 245, 0.7)); }
+    100% { filter: drop-shadow(0 0 3px rgba(181, 65, 250, 0.5)); }
+}
+
+#header h1 a.logo-link:hover svg {
+    animation: logoGlow 2s ease-in-out infinite;
+    transform: scale(1.05);
+}
+
+/* Logo cuando el header tiene fondo */
+#header:not(.alt) h1 svg text {
+    fill: white !important;
+}
+
+/* Logo responsivo */
+@media screen and (max-width: 736px) {
+    #header h1 svg {
+        height: 35px;
+    }
+}
+
+/* Botón Iniciar Sesión fuera de navbar */
+.button-login {
+    position: fixed !important;
+    top: 2rem !important; /* Centrado verticalmente con la navbar */
+    right: 2rem !important; /* A la derecha pero separado */
+    background: transparent !important;
+    border: 2px solid white !important;
+    border-radius: 25px !important;
+    padding: 0.5rem 1.5rem !important;
+    color: white !important;
+    font-weight: 600 !important;
+    font-size: 0.9rem !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease !important;
+    z-index: 10002 !important; /* Mayor que la navbar */
+}
+
+.button-login:hover {
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan)) !important;
+    border-color: transparent !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 5px 20px rgba(181, 65, 250, 0.3) !important;
+}
+
+/* Navigation */
+#header nav {
+    display: flex !important;
+    align-items: center !important;
+    flex: 1 !important;
+    justify-content: flex-start !important;
+    margin-left: 2rem !important;
+    height: 100% !important;
+}
+
+#header nav .nav-items {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1.5rem !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 100% !important;
+}
+
+#header nav .nav-items li {
+    display: flex !important;
+    align-items: center !important;
+}
+
+#header nav .nav-items li:last-child {
+    margin-left: auto !important;
+    margin-right: 2rem !important;
+}
+
+#header nav .mobile-nav {
+    display: none !important;
+}
+
+#header nav a {
+    color: rgba(255, 255, 255, 0.9) !important;
+    text-decoration: none !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
+    font-size: 0.75rem !important;
+}
+
+#header nav a:hover {
+    color: var(--accent-cyan) !important;
+}
+
+#header nav .button-nav {
+    background: transparent !important;
+    border: 2px solid white !important;
+    border-radius: 50% !important;
+    padding: 0 !important;
+    width: 38px !important;
+    height: 38px !important;
+    color: white !important;
+    transition: all 0.3s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    position: relative !important;
+}
+
+#header nav .button-nav i {
+    font-size: 0.85rem !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    line-height: 1 !important;
+    position: relative !important;
+    left: 1px !important;
+}
+
+#header nav .button-nav::after {
+    content: "" !important;
+    position: absolute !important;
+    top: -2px !important;
+    left: -2px !important;
+    right: -2px !important;
+    bottom: -2px !important;
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan)) !important;
+    border-radius: 50% !important;
+    opacity: 0 !important;
+    transition: opacity 0.3s ease !important;
+    z-index: -1 !important;
+}
+
+#header nav .button-nav:hover {
+    border-color: transparent !important;
+    color: white !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 5px 20px rgba(181, 65, 250, 0.3) !important;
+}
+
+#header nav .button-nav:hover::after {
+    opacity: 1 !important;
+}
+
+#header nav .button-demo {
+    background: white !important;
+    border: none !important;
+    border-radius: 19px !important;
+    padding: 0 1.2rem !important;
+    height: 38px !important;
+    color: #1f164f !important;
+    font-weight: 600 !important;
+    font-size: 0.75rem !important;
+    line-height: 38px !important;
+    letter-spacing: 0.05em !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease !important;
+    margin-left: 0.5rem !important;
+    position: relative !important;
+    overflow: visible !important;
+    display: inline-flex !important;
+    align-items: center !important;
+}
+
+#header nav .button-demo::after {
+    content: "" !important;
+    position: absolute !important;
+    top: -2px !important;
+    left: -2px !important;
+    right: -2px !important;
+    bottom: -2px !important;
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan)) !important;
+    border-radius: 19px !important;
+    opacity: 0 !important;
+    transition: opacity 0.3s ease !important;
+    z-index: -1 !important;
+}
+
+#header nav .button-demo:hover {
+    background: linear-gradient(135deg, #b541fa, #76f6f5) !important;
+    color: white !important;
+    transform: translateY(-2px) scale(1.05) !important;
+    box-shadow: 0 10px 30px rgba(181, 65, 250, 0.4), 0 0 60px rgba(118, 246, 245, 0.3) !important;
+}
+
+#header nav .button-demo:hover::after {
+    opacity: 1 !important;
+}
+
+/* Mobile Navigation */
+@media screen and (max-width: 980px) {
+    #header nav .nav-items {
+        display: none !important;
+    }
+    
+    #header nav .mobile-nav {
+        display: block !important;
+    }
+}
+
+/* Banner */
+#banner {
+    background: #000000 !important;
+    background-color: #000000 !important;
+    background-image: none !important;
+    min-height: calc(100vh - 8rem) !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    position: relative !important;
+    overflow: visible !important;
+    padding-top: 7rem !important;
+    padding-bottom: 2rem !important;
+}
+
+/* Forzar fondo negro en todos los estados */
+body.landing #banner {
+    background: #000000 !important;
+    background-color: #000000 !important;
+    background-image: none !important;
+}
+
+body.is-mobile.landing #banner {
+    background: #000000 !important;
+    background-color: #000000 !important;
+    background-image: none !important;
+}
+
+/* Desactivar el overlay del banner */
+#banner:after {
+    display: none !important;
+    background: none !important;
+    opacity: 0 !important;
+}
+
+body.is-preload #banner:after {
+    display: none !important;
+    opacity: 0 !important;
+}
+
+#banner::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background-image: 
+        linear-gradient(to right, rgba(118, 246, 245, 0.15) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(118, 246, 245, 0.15) 1px, transparent 1px) !important;
+    background-size: 80px 80px !important;
+    z-index: 0 !important;
+    opacity: 0.4 !important;
+    background-position: -40px -40px !important;
+    animation: gridMove 2s linear infinite !important;
+}
+
+@keyframes gridMove {
+    0% { background-position: -40px -40px; }
+    100% { background-position: 40px 40px; }
+}
+
+#banner .inner {
+    width: 100% !important;
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+    padding: 0 2rem !important;
+}
+
+#banner .content-wrapper {
+    display: flex !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    gap: 4rem !important;
+    padding-top: 0 !important;
+    margin-top: -2rem !important;
+}
+
+#banner .text-content {
+    max-width: 900px !important;
+    text-align: center !important;
+    margin: 0 auto !important;
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+#banner h2 {
+    font-size: 4rem !important;
+    font-weight: 800 !important;
+    line-height: 1.1 !important;
+    color: white !important;
+    margin: 0 0 1.2rem 0 !important;
+    padding: 0 !important;
+    text-align: center !important;
+    text-transform: none !important;
+    letter-spacing: -0.02em !important;
+    -webkit-text-fill-color: white !important;
+}
+
+/* Eliminar las líneas decorativas antes y después del título */
+#banner h2:before,
+#banner h2:after {
+    display: none !important;
+    content: none !important;
+}
+
+#banner h2 .italic {
+    font-style: italic !important;
+    font-weight: 300 !important;
+    letter-spacing: 0.03em !important;
+}
+
+#banner .subtitle,
+#banner p.subtitle {
+    font-size: 1.1rem !important;
+    line-height: 1.5 !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    margin: 0 auto 1.5rem auto !important;
+    padding: 0 !important;
+    max-width: 650px !important;
+    text-align: center !important;
+    font-weight: 400 !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+}
+
+#banner .text-content .actions {
+    margin: 0 !important;
+    text-align: center !important;
+    padding: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+}
+
+#banner .text-content .actions li {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#banner .visual-content {
+    position: absolute !important;
+    top: 50% !important;
+    left: 0 !important;
+    right: 0 !important;
+    transform: translateY(-50%) !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
+}
+
+/* Floating Orbs */
+.floating-orbs {
+    position: relative !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.orb {
+    position: absolute !important;
+    border-radius: 50% !important;
+    filter: blur(20px) !important;
+}
+
+.orb-main {
+    width: 250px !important;
+    height: 250px !important;
+    background: radial-gradient(circle, rgba(181, 65, 250, 0.4), rgba(118, 246, 245, 0.3)) !important;
+    top: 50% !important;
+    left: 15% !important;
+    transform: translate(-50%, -50%) !important;
+    animation: floatMain 8s ease-in-out infinite !important;
+    filter: blur(40px) !important;
+    box-shadow: 0 0 120px rgba(181, 65, 250, 0.2) !important;
+}
+
+.orb-1 {
+    width: 180px !important;
+    height: 180px !important;
+    background: rgba(118, 246, 245, 0.4) !important;
+    top: 40% !important;
+    right: 15% !important;
+    animation: float1 6s ease-in-out infinite !important;
+    filter: blur(35px) !important;
+    box-shadow: 0 0 80px rgba(118, 246, 245, 0.2) !important;
+}
+
+.orb-2 {
+    width: 150px !important;
+    height: 150px !important;
+    background: rgba(181, 65, 250, 0.35) !important;
+    top: 30% !important;
+    left: 10% !important;
+    animation: float2 7s ease-in-out infinite !important;
+    filter: blur(30px) !important;
+    box-shadow: 0 0 60px rgba(181, 65, 250, 0.2) !important;
+}
+
+.orb-3 {
+    width: 200px !important;
+    height: 200px !important;
+    background: rgba(118, 246, 245, 0.3) !important;
+    top: 60% !important;
+    right: 20% !important;
+    animation: float3 5s ease-in-out infinite !important;
+    filter: blur(45px) !important;
+    box-shadow: 0 0 70px rgba(118, 246, 245, 0.15) !important;
+}
+
+.orb-4 {
+    width: 120px !important;
+    height: 120px !important;
+    background: rgba(181, 65, 250, 0.3) !important;
+    top: 25% !important;
+    left: 25% !important;
+    animation: float1 6.5s ease-in-out infinite reverse !important;
+    filter: blur(25px) !important;
+    box-shadow: 0 0 50px rgba(181, 65, 250, 0.15) !important;
+}
+
+.orb-5 {
+    width: 100px !important;
+    height: 100px !important;
+    background: rgba(118, 246, 245, 0.35) !important;
+    top: 65% !important;
+    right: 35% !important;
+    animation: float2 5.5s ease-in-out infinite !important;
+    filter: blur(20px) !important;
+    box-shadow: 0 0 40px rgba(118, 246, 245, 0.15) !important;
+}
+
+@keyframes floatMain {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.1); }
+}
+
+@keyframes float1 {
+    0%, 100% { transform: translate(0, 0); }
+    33% { transform: translate(20px, -20px); }
+    66% { transform: translate(-10px, 10px); }
+}
+
+@keyframes float2 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-20px, -30px); }
+}
+
+@keyframes float3 {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(10px, 10px); }
+    75% { transform: translate(-15px, -10px); }
+}
+
+/* Buttons */
+.button {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+    border-radius: 25px !important;
+    padding: 0.75rem 2rem !important;
+}
+
+.button.primary {
+    background: transparent !important;
+    border: 2px solid white !important;
+    color: white !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    padding: 0.5rem 1.5rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    position: relative !important;
+    overflow: visible !important;
+    z-index: 1 !important;
+}
+
+.button.primary:before {
+    content: "▶" !important;
+    font-size: 0.7rem !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+.button.primary::after {
+    content: "" !important;
+    position: absolute !important;
+    top: -2px !important;
+    left: -2px !important;
+    right: -2px !important;
+    bottom: -2px !important;
+    background: linear-gradient(135deg, #b541fa, #76f6f5) !important;
+    border-radius: 25px !important;
+    opacity: 0 !important;
+    transition: opacity 0.3s ease !important;
+    z-index: -1 !important;
+}
+
+.button.primary:hover {
+    background: transparent !important;
+    border-color: transparent !important;
+    transform: translateY(-3px) scale(1.02) !important;
+    box-shadow: 0 20px 60px rgba(181, 65, 250, 0.5), 0 0 100px rgba(118, 246, 245, 0.3) !important;
+}
+
+.button.primary:hover::after {
+    opacity: 1 !important;
+}
+
+.button:not(.primary) {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    color: white !important;
+    backdrop-filter: blur(10px) !important;
+    position: relative !important;
+    overflow: visible !important;
+}
+
+.button:not(.primary)::after {
+    content: "" !important;
+    position: absolute !important;
+    top: -2px !important;
+    left: -2px !important;
+    right: -2px !important;
+    bottom: -2px !important;
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan)) !important;
+    border-radius: 25px !important;
+    opacity: 0 !important;
+    transition: opacity 0.3s ease !important;
+    z-index: -1 !important;
+}
+
+.button:not(.primary):hover {
+    border-color: transparent !important;
+    color: white !important;
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan)) !important;
+}
+
+.button:not(.primary):hover::after {
+    opacity: 1 !important;
+}
+
+/* More scroll button */
+.more {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.more:hover {
+    color: var(--accent-cyan) !important;
+}
+
+/* Image Section */
+.wrapper.style-image {
+    background: #000000 !important;
+    padding: 0 0 2rem 0 !important;
+    position: relative !important;
+    margin-top: -8rem !important;
+}
+
+.wrapper.style-image .inner {
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+    padding: 0 2rem !important;
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.image-container {
+    width: 100% !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    position: relative !important;
+    box-shadow: 0 20px 60px rgba(181, 65, 250, 0.2), 0 0 100px rgba(118, 246, 245, 0.1) !important;
+    z-index: 10 !important;
+    max-height: 600px !important;
+}
+
+.image-container img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+    display: block !important;
+    opacity: 0.9 !important;
+    transition: transform 0.3s ease, opacity 0.3s ease !important;
+}
+
+.image-container:hover img {
+    transform: scale(1.02) !important;
+    opacity: 1 !important;
+}
+
+.image-container::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: linear-gradient(135deg, rgba(181, 65, 250, 0.1), rgba(118, 246, 245, 0.1)) !important;
+    pointer-events: none !important;
+    z-index: 1 !important;
+}
+
+@media screen and (max-width: 980px) {
+    .wrapper.style-image {
+        padding: 3rem 0 !important;
+    }
+    
+    .image-container {
+        max-width: 900px !important;
+        border-radius: 10px !important;
+    }
+}
+
+@media screen and (max-width: 736px) {
+    .image-container {
+        max-width: 100% !important;
+    }
+}
+
+/* Sections */
+.wrapper.style1 {
+    background: rgba(10, 10, 10, 0.95) !important;
+    color: white !important;
+    position: relative !important;
+    margin-top: -2rem !important;
+}
+
+.wrapper.style1 .inner {
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 0.5rem 3rem 0.5rem !important;
+}
+
+.wrapper.style2 {
+    background: #0a0a0a !important;
+    color: white !important;
+}
+
+.wrapper.style3 {
+    background: rgba(15, 15, 15, 0.98) !important;
+    color: white !important;
+}
+
+.wrapper.style4 {
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan)) !important;
+}
+
+/* Spotlights */
+.spotlight .content {
+    background: rgba(255, 255, 255, 0.03) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 15px !important;
+    padding: 3rem !important;
+}
+
+.spotlight:nth-child(even) .content {
+    background: rgba(181, 65, 250, 0.05) !important;
+}
+
+.spotlight h2 {
+    color: white !important;
+    font-weight: 700 !important;
+}
+
+.spotlight p {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Features Grid - Estilo Twingate */
+.features-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 2.5rem !important;
+    margin-top: -1rem !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.feature-item {
+    text-align: left !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 0.8rem !important;
+}
+
+.feature-item .icon {
+    font-size: 0.85rem !important;
+    color: #76f6f5 !important;
+    margin-bottom: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 28px !important;
+    height: 28px !important;
+    padding: 0 !important;
+    background: rgba(118, 246, 245, 0.1) !important;
+    border-radius: 6px !important;
+    backdrop-filter: blur(10px) !important;
+    flex-shrink: 0 !important;
+    margin-top: 0 !important;
+    line-height: 1 !important;
+}
+
+.feature-item h3 {
+    color: white !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 0.4rem !important;
+    line-height: 1.2 !important;
+    margin-top: 0 !important;
+}
+
+.feature-item p {
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-size: 0.75rem !important;
+    line-height: 1.35 !important;
+    margin: 0 !important;
+}
+
+.feature-content {
+    flex: 1 !important;
+    padding-top: 0 !important;
+}
+
+@media screen and (max-width: 980px) {
+    .features-grid {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+}
+
+/* Icons */
+.icons.major li .icon {
+    border: 2px solid transparent !important;
+    background: linear-gradient(135deg, rgba(181, 65, 250, 0.1), rgba(118, 246, 245, 0.1)) !important;
+    border-radius: 50% !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+.icons.major li .icon:before {
+    color: white !important;
+}
+
+.icon.major.style1 {
+    border: none !important;
+    background: linear-gradient(135deg, #b541fa, #76f6f5) !important;
+    color: white !important;
+}
+
+.icon.major.style2 {
+    border: none !important;
+    background: linear-gradient(135deg, #76f6f5, #b541fa) !important;
+    color: white !important;
+}
+
+.icon.major.style3 {
+    border: none !important;
+    background: linear-gradient(135deg, #b541fa, #76f6f5) !important;
+    color: white !important;
+}
+
+/* Features */
+.features li {
+    background: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(10px) !important;
+    border-radius: 15px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.features li:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(181, 65, 250, 0.2) !important;
+    border-color: rgba(181, 65, 250, 0.3) !important;
+}
+
+.features li .icon:before {
+    color: transparent !important;
+    background: linear-gradient(135deg, #b541fa, #76f6f5) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+}
+
+.features h3 {
+    color: white !important;
+    font-weight: 600 !important;
+}
+
+.features p {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Headers */
+.major h2 {
+    color: white !important;
+    font-weight: 700 !important;
+    margin-bottom: 0.1rem !important;
+    font-size: 2rem !important;
+}
+
+.major p {
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-size: 0.95rem !important;
+    margin-top: -0.2rem !important;
+    margin-bottom: 0 !important;
+}
+
+/* CTA */
+#cta {
+    position: relative;
+    overflow: hidden;
+}
+
+#cta::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.1), 
+                transparent);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+#cta h2 {
+    color: white !important;
+    font-size: 2.5rem !important;
+}
+
+#cta p {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Footer */
+#footer {
+    background: #000000 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#footer .icons a {
+    color: rgba(255, 255, 255, 0.7) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+}
+
+#footer .icons a:hover {
+    background: linear-gradient(135deg, #b541fa, #76f6f5) !important;
+    border-color: transparent !important;
+    color: white !important;
+    transform: translateY(-3px) !important;
+}
+
+#footer .copyright {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+#footer .copyright li {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Menu */
+#menu {
+    background: rgba(22, 17, 58, 0.95) !important;
+    backdrop-filter: blur(10px);
+}
+
+#menu ul li a {
+    color: rgba(255, 255, 255, 0.8) !important;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+#menu ul li a:hover {
+    color: var(--accent-cyan) !important;
+    background: rgba(181, 65, 250, 0.1);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--secondary-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent-purple);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-cyan);
+}
+
+/* Remove body floating orbs as we have them in the banner now */
+body::before,
+body::after {
+    display: none !important;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 1280px) {
+    #banner h2 {
+        font-size: 3rem !important;
+    }
+    
+    #banner .visual-content {
+        position: absolute !important;
+        right: 0 !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        z-index: 1 !important;
+        opacity: 0.5 !important;
+    }
+    
+    #banner .text-content {
+        position: relative !important;
+        z-index: 2 !important;
+    }
+}
+
+@media screen and (max-width: 980px) {
+    #banner .content-wrapper {
+        flex-direction: column !important;
+    }
+    
+    #banner .visual-content {
+        bottom: -50px !important;
+        width: 400px !important;
+        height: 200px !important;
+    }
+    
+    #banner h2 {
+        font-size: 2.5rem !important;
+    }
+}
+
+@media screen and (max-width: 736px) {
+    /* Header móvil */
+    #header {
+        padding: 1rem !important;
+        margin: 0.5rem !important;
+        width: calc(100% - 1rem) !important;
+        min-height: 60px !important;
+    }
+    
+    #header h1 {
+        margin-left: 0.5rem !important;
+    }
+    
+    #header h1 a span {
+        font-size: 1.3rem !important;
+    }
+    
+    /* Banner móvil */
+    #banner {
+        padding-top: 5rem !important;
+        min-height: auto !important;
+    }
+    
+    #banner h2 {
+        font-size: 2rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    #banner .subtitle {
+        font-size: 0.95rem !important;
+        padding: 0 1rem !important;
+    }
+    
+    #banner .button.primary {
+        font-size: 0.8rem !important;
+        padding: 0.4rem 1.2rem !important;
+    }
+    
+    /* Imagen móvil */
+    .wrapper.style-image {
+        margin-top: -4rem !important;
+        padding: 0 0 1rem 0 !important;
+    }
+    
+    .image-container {
+        max-height: 300px !important;
+        border-radius: 10px !important;
+        margin: 0 0.5rem !important;
+    }
+    
+    /* Features móvil */
+    .wrapper.style1 {
+        margin-top: 0 !important;
+    }
+    
+    .wrapper.style1 .inner {
+        padding: 1rem 1rem 2rem 1rem !important;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+    }
+    
+    .feature-item h3 {
+        font-size: 1rem !important;
+    }
+    
+    .feature-item p {
+        font-size: 0.85rem !important;
+        line-height: 1.4 !important;
+    }
+    
+    /* Botones navegación móvil */
+    #header nav .button-nav {
+        width: 35px !important;
+        height: 35px !important;
+    }
+    
+    #header nav .button-demo {
+        height: 35px !important;
+        padding: 0 1rem !important;
+        font-size: 0.7rem !important;
+    }
+    
+    /* Orbs móvil - reducir o ocultar */
+    .floating-orbs {
+        opacity: 0.3 !important;
+    }
+    
+    .orb {
+        filter: blur(60px) !important;
+    }
+}
