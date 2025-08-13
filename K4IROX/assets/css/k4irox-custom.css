@@ -1,0 +1,400 @@
+/* ==============================================
+   K4iRox Custom Styles
+   La IA que domina el momento oportuno
+   Developed by IAWOT
+   ============================================== */
+
+/* Logo Styling - Clean white logo without filters */
+.logo__img {
+    max-height: 65px;
+    width: auto;
+    transition: all 0.3s ease;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+/* Navbar logo alignment fix */
+.navbar .logo {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+/* Adjust navbar height to accommodate larger logo */
+.navbar {
+    min-height: 80px;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+}
+
+/* Align nav items vertically */
+.navbar-nav {
+    align-items: center !important;
+}
+
+.logo__img:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 8px rgba(112, 78, 231, 0.6));
+}
+
+/* Preloader logo specific */
+.preloader__img img {
+    max-width: 200px;
+    height: auto;
+}
+
+/* Footer logo */
+footer .logo__img {
+    max-height: 55px;
+    opacity: 0.95;
+}
+
+footer .logo__img:hover {
+    opacity: 1;
+    filter: drop-shadow(0 0 5px rgba(112, 78, 231, 0.4));
+}
+
+/* Hero Section Adjustments */
+.hero-3 {
+    margin-top: -60px !important; /* Move entire hero section up */
+}
+
+.hero-3 h2 {
+    font-size: 3.5rem !important; /* Larger title */
+}
+
+.hero-3 p {
+    font-size: 1.2rem !important; /* Larger subtitle */
+    margin-bottom: 2rem !important;
+}
+
+.hero-3 .btn {
+    padding: 0.5rem 1.5rem !important; /* Smaller buttons */
+    font-size: 0.85rem !important;
+}
+
+/* Hero Image Styling */
+.hero-3__img {
+    position: relative;
+    display: inline-block;
+    margin-top: -40px; /* Move robot up slightly */
+}
+
+.hero-3__img img {
+    max-width: 150%;
+    width: 500px;
+    height: auto;
+    filter: drop-shadow(0 20px 40px rgba(112, 78, 231, 0.3));
+    animation: float 3s ease-in-out infinite;
+    position: relative;
+    z-index: 2;
+}
+
+/* Speech Bubbles for Robot */
+.robot-speech {
+    position: absolute;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border: 2px solid #704ee7;
+    border-radius: 25px;
+    padding: 12px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #704ee7;
+    box-shadow: 0 10px 30px rgba(112, 78, 231, 0.2);
+    opacity: 0;
+    animation: speechPop 8s ease-in-out infinite;
+    z-index: 10;
+    white-space: nowrap;
+}
+
+.robot-speech::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border: 2px solid #704ee7;
+    transform: rotate(45deg);
+    z-index: -1;
+}
+
+/* Speech Bubble 1 - Top Left - pointing to robot center */
+.robot-speech-1 {
+    top: 15%;
+    left: -140px;
+    animation-delay: 0s;
+}
+
+.robot-speech-1::before {
+    right: -12px;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    border-left: none;
+    border-top: none;
+}
+
+/* Speech Bubble 2 - Top Right - pointing to robot center */
+.robot-speech-2 {
+    top: 10%;
+    right: -140px;
+    animation-delay: 2s;
+}
+
+.robot-speech-2::before {
+    left: -12px;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    border-right: none;
+    border-bottom: none;
+}
+
+/* Speech Bubble 3 - Bottom Right - pointing to robot center */
+.robot-speech-3 {
+    bottom: 35%;
+    right: -160px;
+    animation-delay: 4s;
+}
+
+.robot-speech-3::before {
+    left: -12px;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    border-right: none;
+    border-bottom: none;
+}
+
+/* Speech Bubble 4 - Bottom Left - pointing to robot center */
+.robot-speech-4 {
+    bottom: 30%;
+    left: -140px;
+    animation-delay: 6s;
+}
+
+.robot-speech-4::before {
+    right: -12px;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    border-left: none;
+    border-top: none;
+}
+
+/* Animation for speech bubbles */
+@keyframes speechPop {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(0.8) translateY(10px);
+    }
+    10%, 25% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+    30% {
+        opacity: 0;
+        transform: scale(0.8) translateY(-10px);
+    }
+}
+
+/* Tablet adjustments */
+@media (max-width: 1200px) {
+    .hero-3__img img {
+        width: 400px;
+    }
+    
+    .robot-speech-1 {
+        left: -120px;
+    }
+    
+    .robot-speech-2 {
+        right: -120px;
+    }
+    
+    .robot-speech-3 {
+        right: -130px;
+    }
+    
+    .robot-speech-4 {
+        left: -120px;
+    }
+}
+
+/* Mobile adjustments for speech bubbles */
+@media (max-width: 768px) {
+    .hero-3__img img {
+        width: 300px;
+    }
+    
+    .robot-speech {
+        display: none; /* Hide on mobile to avoid clutter */
+    }
+}
+
+/* Floating animation for robot */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Animation for Gradient Text - Using original purple color */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.text-gradient-primary {
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .logo__img {
+        max-height: 50px;
+    }
+    
+    .navbar {
+        min-height: 70px;
+    }
+}
+
+/* ==============================================
+   Pricing Cards - Equal Height Fix
+   ============================================== */
+
+/* Make all pricing cards equal height */
+.pricing-card {
+    min-height: 600px !important;
+    height: 100%;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* Make the footer grow to fill available space */
+.pricing-card__footer {
+    flex-grow: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+}
+
+/* Push the button to the bottom */
+.pricing-card__footer .btn {
+    margin-top: auto !important;
+}
+
+/* Ensure list items don't break the layout */
+.pricing-card__footer ul {
+    margin-bottom: 1.5rem !important;
+}
+
+/* Popular card adjustments to maintain equal height */
+.popular-pricing-card {
+    min-height: 600px !important;
+}
+
+/* Responsive height adjustments */
+@media (max-width: 991px) {
+    .pricing-card,
+    .popular-pricing-card {
+        min-height: 550px !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .pricing-card,
+    .popular-pricing-card {
+        min-height: auto !important;
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* Ensure consistent spacing between elements */
+.pricing-card__head,
+.pricing-card__body {
+    flex-shrink: 0;
+}
+
+/* Fine-tune the card content alignment */
+.pricing-card h5 {
+    margin-bottom: 0.5rem;
+}
+
+.pricing-card__body h3 {
+    padding: 0.5rem 0;
+}
+
+/* Process cards in pricing page - Force Equal Height */
+.row .col-md-6.col-lg-4 .process-card {
+    min-height: 700px !important;
+    height: 700px !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* Direct child padding containers */
+.process-card.p-6,
+.process-card > .px-6 {
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* Center card with special header */
+.process-card.overflow-hidden {
+    padding: 0 !important;
+}
+
+.process-card.overflow-hidden > div:last-child {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 1.5rem !important;
+}
+
+/* Force all lists to same height */
+.process-card ul.list {
+    min-height: 150px !important;
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    gap: 0.5rem !important;
+}
+
+/* Force last HR before button */
+.process-card hr:last-of-type {
+    margin-top: auto !important;
+    margin-bottom: 1.5rem !important;
+}
+
+/* Force button alignment */
+.process-card a.btn,
+.process-card button {
+    margin-top: 0 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+    .row .col-md-6.col-lg-4 .process-card {
+        min-height: 650px !important;
+        height: 650px !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .row .col-md-6.col-lg-4 .process-card {
+        min-height: auto !important;
+        height: auto !important;
+        margin-bottom: 2rem !important;
+    }
+}
